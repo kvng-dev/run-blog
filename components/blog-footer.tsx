@@ -1,161 +1,303 @@
-import { Github, Twitter, Linkedin, Mail, Rss } from "lucide-react";
+"use client";
+import {
+  Twitter,
+  Linkedin,
+  Mail,
+  Rss,
+  Phone,
+  MapPin,
+  Globe,
+  TrendingUp,
+  Shield,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export function BlogFooter() {
+  const [email, setEmail] = useState("");
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleNewsletterSubmit = () => {
+    if (email.trim() && email.includes("@")) {
+      console.log("Newsletter signup:", email);
+      setEmail("");
+      setIsSubscribed(true);
+      setTimeout(() => setIsSubscribed(false), 3000);
+    }
+  };
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-card border-t">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand Section */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">
-                  TI
-                </span>
+    <footer className="bg-slate-900 text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Footer Content */}
+        <div className="py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {/* Brand Section */}
+            <div className="lg:col-span-1 space-y-6">
+              <div className="space-y-4">
+                <Link href="/" className="flex items-center space-x-3">
+                  <div className="h-12 w-12 rounded-lg bg-white flex items-center justify-center p-1.5">
+                    <Image src="/white.png" alt="" height={30} width={100} />
+                  </div>
+                  <div>
+                    <span className="font-bold text-xl text-white">
+                      Run Alpha
+                    </span>
+                    <div className="text-sm text-gray-400 -mt-1">Insights</div>
+                  </div>
+                </Link>
+                <p className="text-gray-300 leading-relaxed">
+                  Expert insights on investment management, FX risk management,
+                  and wealth protection strategies. Empowering investors to
+                  navigate global markets with confidence.
+                </p>
               </div>
-              <span className="font-bold text-xl text-card-foreground">
-                TechInsights
-              </span>
+
+              {/* Contact Info */}
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <Globe className="h-4 w-4 text-blue-400" />
+                  <span className="text-sm">www.runalpha.co</span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <Mail className="h-4 w-4 text-blue-400" />
+                  <span className="text-sm">hello@runalpha.co</span>
+                </div>
+                <div className="flex items-center space-x-3 text-gray-300">
+                  <MapPin className="h-4 w-4 text-blue-400" />
+                  <span className="text-sm">
+                    1 Uwa, Close, Off Billings Way, <br /> Lagos, Nigeria
+                  </span>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex space-x-3">
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="border-gray-600 hover:bg-blue-600 hover:border-blue-600 transition-all"
+                >
+                  <Twitter className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="border-gray-600 hover:bg-blue-600 hover:border-blue-600 transition-all"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="border-gray-600 hover:bg-orange-600 hover:border-orange-600 transition-all"
+                >
+                  <Rss className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
-            <p className="text-muted-foreground">
-              Discover the latest insights in technology, development, and
-              innovation. Stay ahead with expert analysis and tutorials.
-            </p>
-            <div className="flex space-x-2">
-              <Button variant="ghost" size="icon">
-                <Twitter className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Github className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Linkedin className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Rss className="h-4 w-4" />
-              </Button>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-white flex items-center gap-2">
+                <Users className="h-4 w-4 text-blue-400" />
+                Quick Links
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  { label: "All Articles", href: "/blog" },
+                  {
+                    label: "Investment Management",
+                    href: "/blog/category/investment-management",
+                  },
+                  {
+                    label: "FX Risk Management",
+                    href: "/blog/category/fx-risk-management",
+                  },
+                  {
+                    label: "Hedging Strategies",
+                    href: "/blog/category/hedging-strategies",
+                  },
+                  {
+                    label: "Portfolio Protection",
+                    href: "/blog/category/portfolio-protection",
+                  },
+                  {
+                    label: "About Run Alpha",
+                    href: "https://runalpha.co/about",
+                  },
+                ].map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      href={link.href}
+                      className="text-gray-300 hover:text-blue-400 transition-colors text-sm flex items-center group"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {link.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-card-foreground">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  All Articles
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Categories
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+            {/* Services */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-white flex items-center gap-2">
+                <Shield className="h-4 w-4 text-blue-400" />
+                Our Services
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  {
+                    label: "Wealth Management",
+                    href: "https://runalpha.co/wealth-management",
+                  },
+                  {
+                    label: "Investment Advisory",
+                    href: "https://runalpha.co/investment-advisory",
+                  },
+                  {
+                    label: "Risk Assessment",
+                    href: "https://runalpha.co/risk-assessment",
+                  },
+                  {
+                    label: "Portfolio Analysis",
+                    href: "https://runalpha.co/portfolio-analysis",
+                  },
+                  {
+                    label: "FX Hedging Solutions",
+                    href: "https://runalpha.co/fx-solutions",
+                  },
+                  {
+                    label: "Family Office Services",
+                    href: "https://runalpha.co/family-office",
+                  },
+                ].map((service, index) => (
+                  <li key={index}>
+                    <Link
+                      href={service.href}
+                      className="text-gray-300 hover:text-blue-400 transition-colors text-sm flex items-center group"
+                    >
+                      <span className="group-hover:translate-x-1 transition-transform duration-200">
+                        {service.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Categories */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-card-foreground">Categories</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  AI & Development
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Web Development
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Architecture
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Security
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Performance
-                </a>
-              </li>
-            </ul>
-          </div>
+            {/* Newsletter */}
+            <div className="space-y-4">
+              <h3 className="font-semibold text-lg text-white flex items-center gap-2">
+                <Mail className="h-4 w-4 text-blue-400" />
+                Stay Informed
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Get exclusive insights on market trends, investment strategies,
+                and risk management delivered to your inbox weekly.
+              </p>
 
-          {/* Newsletter */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-card-foreground">Stay Updated</h3>
-            <p className="text-muted-foreground text-sm">
-              Subscribe to our newsletter for the latest articles and insights.
-            </p>
-            <div className="space-y-2">
-              <Input
-                placeholder="Enter your email"
-                className="bg-background border-border"
-              />
-              <Button className="w-full">
-                <Mail className="mr-2 h-4 w-4" />
-                Subscribe
-              </Button>
+              <div className="space-y-3">
+                <div className="relative">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleNewsletterSubmit();
+                      }
+                    }}
+                    className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-blue-500 transition-colors"
+                  />
+                </div>
+
+                <Button
+                  onClick={handleNewsletterSubmit}
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+                  disabled={isSubscribed}
+                >
+                  {isSubscribed ? (
+                    <>
+                      <Mail className="mr-2 h-4 w-4" />
+                      Subscribed!
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="mr-2 h-4 w-4" />
+                      Subscribe Now
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="text-xs text-gray-400 space-y-1">
+                <div className="flex items-center gap-2">
+                  <Shield className="h-3 w-3 text-green-400" />
+                  <span>No spam, unsubscribe anytime</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Users className="h-3 w-3 text-blue-400" />
+                  <span>Join 10,000+ professional investors</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 text-center">
-          <p className="text-muted-foreground text-sm">
-            © 2024 TechInsights Blog. All rights reserved. Built with ❤️ for the
-            developer community.
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-700 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-gray-400">
+              <p>© {currentYear} Run Alpha. All rights reserved.</p>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/privacy"
+                  className="hover:text-white transition-colors"
+                >
+                  Privacy Policy
+                </Link>
+                <Link
+                  href="/terms"
+                  className="hover:text-white transition-colors"
+                >
+                  Terms of Service
+                </Link>
+                <Link
+                  href="/disclaimer"
+                  className="hover:text-white transition-colors"
+                >
+                  Investment Disclaimer
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <span>Regulated by</span>
+              <span className="text-blue-400 font-medium">SEC Nigeria</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Investment Disclaimer */}
+        <div className="border-t border-gray-700 py-6">
+          <p className="text-xs text-gray-500 text-center leading-relaxed max-w-4xl mx-auto">
+            <strong className="text-gray-400">Investment Disclaimer:</strong>{" "}
+            The content provided is for educational and informational purposes
+            only. It does not constitute investment advice, and should not be
+            relied upon as such. Past performance does not guarantee future
+            results. All investments carry risk of loss. Please consult with a
+            qualified financial advisor before making investment decisions.
           </p>
         </div>
       </div>
