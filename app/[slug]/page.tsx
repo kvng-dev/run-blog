@@ -1,4 +1,4 @@
-import { getArticleBySlug, getRelatedArticles } from "@/data";
+import { getArticleBySlug } from "@/data";
 
 import SingleArticleCard from "@/components/SingleArticleCard";
 import { Metadata } from "next";

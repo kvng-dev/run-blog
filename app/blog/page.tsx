@@ -149,13 +149,19 @@ const AllArticlesPage = () => {
     // Sort
     switch (sortBy) {
       case "newest":
-        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        filtered.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
         break;
       case "oldest":
-        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+        filtered.sort(
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+        );
         break;
       case "popular":
-        filtered.sort((a, b) => b.featured - a.featured);
+        filtered.sort((a, b) =>
+          b.featured === a.featured ? 0 : b.featured ? 1 : -1
+        );
         break;
       default:
         break;

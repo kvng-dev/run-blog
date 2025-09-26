@@ -30,11 +30,11 @@ export function BlogHeader() {
 
   // Close mobile menu when clicking outside or on escape
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent<HTMLInputElement>) => {
+    const handleEscape = (e: globalThis.KeyboardEvent) => {
       if (e.key === "Escape") setMobileNav(false);
     };
 
-    const handleClickOutside = (e: FormEvent) => {
+    const handleClickOutside = (e: MouseEvent) => {
       if (
         mobileNav &&
         !(e.target as HTMLElement).closest(".mobile-nav-container")
