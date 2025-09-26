@@ -1,23 +1,17 @@
 "use client";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Calendar, Clock, Clock10, User } from "lucide-react";
-import Image from "next/image";
+import { ArrowRight, Clock10 } from "lucide-react";
 import { Button } from "./ui/button";
 import { getFeaturedArticles } from "@/data";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function FeaturedPosts() {
   const article = getFeaturedArticles();
 
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const addSlugToParams = (slug: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    params.set("slug", slug);
-
     router.push(`/${slug}`);
   };
 

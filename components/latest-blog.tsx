@@ -4,18 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, User, ArrowRight } from "lucide-react";
 import { getRelatedArticles } from "@/data";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function LatestBlog() {
   const recentPosts = getRelatedArticles();
 
   const router = useRouter();
-  const searchParams = useSearchParams();
   const addSlugToParams = (slug: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    params.set("slug", slug);
-
     router.push(`/${slug}`);
   };
   return (

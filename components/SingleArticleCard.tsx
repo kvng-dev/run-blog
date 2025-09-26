@@ -6,9 +6,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getRelatedArticles } from "@/data";
-
 
 interface Props {
   article:
@@ -34,7 +33,6 @@ interface Props {
 
 const SingleArticleCard = ({ article }: Props) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const currentSlug = article?.slug;
 
   const relatedArticle = getRelatedArticles().filter(
@@ -42,10 +40,6 @@ const SingleArticleCard = ({ article }: Props) => {
   );
 
   const addSlugToParams = (slug: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    params.set("slug", slug);
-
     router.push(`/${slug}`);
   };
 
