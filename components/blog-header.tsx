@@ -66,8 +66,8 @@ export function BlogHeader() {
 
   const navigationItems = [
     { href: "/blog", label: "All Articles", icon: BookOpen },
-    { href: "/blog/categories", label: "Categories", icon: Tag },
-    { href: "/blog/trending", label: "Trending", icon: TrendingUp },
+    // { href: "/blog/categories", label: "Categories", icon: Tag },
+    // { href: "/blog/trending", label: "Trending", icon: TrendingUp },
   ];
 
   return (
@@ -99,23 +99,6 @@ export function BlogHeader() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-6">
-              {navigationItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="flex items-center space-x-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <Icon size={16} />
-                    <span>{item.label}</span>
-                  </Link>
-                );
-              })}
-            </nav>
-
             {/* Search & Actions */}
             <div className="flex items-center space-x-4">
               {/* Desktop Search */}
@@ -136,6 +119,22 @@ export function BlogHeader() {
                 </div>
               </div>
 
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center space-x-6">
+                {navigationItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center space-x-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {/* <Icon size={16} /> */}
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </nav>
               {/* Homepage Link */}
               <Link
                 href="https://runalpha.co"

@@ -11,100 +11,12 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import { getPublishedArticles } from "@/data";
 
 // Mock data - replace with your actual blog data
-const mockArticles = [
-  {
-    id: 1,
-    title:
-      "Investment Management for the Digital Age: Bridging the Gap Between Fintech and Expert Advice",
-    excerpt:
-      "You've outgrown your savings app. Learn when it's time to move from DIY fintech to professional investment management to secure your financial future.",
-    author: "Run Alpha Team",
-    date: "2024-03-15",
-    readTime: "8 min read",
-    category: "Investment Management",
-    tags: [
-      "fintech",
-      "investment management",
-      "wealth management",
-      "Nigeria",
-      "professional advice",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "investment-management-digital-age",
-    featured: true,
-  },
-  {
-    id: 2,
-    title:
-      "The Silent Wealth Killer: How Foreign Exchange (FX) Fluctuations Erode Your Portfolio",
-    excerpt:
-      "FX fluctuations are one of the least talked about threats to wealth, yet they are often the most damaging. Learn how to protect your portfolio from currency risk.",
-    author: "Run Alpha Team",
-    date: "2024-03-12",
-    readTime: "10 min read",
-    category: "FX Risk Management",
-    tags: [
-      "FX risk",
-      "currency fluctuations",
-      "portfolio protection",
-      "wealth management",
-      "hedging",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "fx-fluctuations-portfolio-risks",
-    featured: true,
-  },
-  {
-    id: 3,
-    title:
-      "Hedging Strategies for FX Fluctuations: Protecting Wealth in Nigeria and Beyond",
-    excerpt:
-      "Discover how hedging strategies for FX fluctuations protect Nigerian and African investors from currency risk. Learn about forwards, swaps, and diversification.",
-    author: "Run Alpha Team",
-    date: "2024-03-10",
-    readTime: "12 min read",
-    category: "Hedging Strategies",
-    tags: [
-      "hedging",
-      "FX risk management",
-      "Nigeria",
-      "Africa",
-      "currency protection",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "hedging-strategies-fx-fluctuations",
-    featured: false,
-  },
-  {
-    id: 4,
-    title:
-      "Riding the Storm: How FX Assets Can Protect Nigerian Investment Portfolios",
-    excerpt:
-      "Facing a volatile market? Learn how a strategic investment management approach using foreign exchange assets can protect and grow your portfolio.",
-    author: "Run Alpha Team",
-    date: "2024-03-08",
-    readTime: "9 min read",
-    category: "Portfolio Protection",
-    tags: [
-      "FX assets",
-      "Nigeria",
-      "portfolio protection",
-      "Naira volatility",
-      "diversification",
-    ],
-    image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    slug: "fx-assets-protect-nigerian-portfolios",
-    featured: false,
-  },
-];
 
 const AllArticlesPage = () => {
+  const articles = getPublishedArticles();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
@@ -118,14 +30,14 @@ const AllArticlesPage = () => {
   const categories = useMemo(() => {
     const cats = [
       "All",
-      ...new Set(mockArticles.map((article) => article.category)),
+      ...new Set(articles.map((article) => article.category)),
     ];
     return cats;
   }, []);
 
   // Filter and sort articles
   const filteredArticles = useMemo(() => {
-    let filtered = mockArticles;
+    let filtered = articles;
 
     // Search filter
     if (searchQuery) {

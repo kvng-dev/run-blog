@@ -10,7 +10,7 @@ export const blogArticles = [
     metaDescription:
       "You've outgrown your savings app. Learn when it's time to move from DIY fintech to professional investment management to secure your financial future.",
     author: "Run Alpha Team",
-    date: "2024-03-15",
+    date: "2025-09-10",
     readTime: "8 min read",
     category: "Investment Management",
     tags: [
@@ -20,8 +20,7 @@ export const blogArticles = [
       "Nigeria",
       "professional advice",
     ],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/invest/desk.jpg",
     slug: "investment-management-digital-age",
     featured: true,
     published: true,
@@ -29,6 +28,8 @@ export const blogArticles = [
 <p class="mb-8">The world of investing has never been more accessible. Thanks to the proliferation of fintech apps and digital banking, anyone with a smartphone can start their journey toward passive income. These platforms, often featuring user-friendly interfaces and robo-advisor tools, have democratized investing, making it possible for millions to get started with minimal capital.</p>
 
 <p class="mb-8">But as your portfolio grows and your financial goals become more sophisticated, a critical question arises: Is this enough? While financial technology has empowered the individual investor, it often lacks the personalized guidance and comprehensive strategy required for truly serious wealth growth. The solution isn't to abandon technology, but to bridge the gap between convenient DIY tools and the expert advice that a professional investment management firm provides.</p>
+
+<img src="/invest/desk.jpg" class="w-full h-full mb-6" />
 
 <h2 class="text-xl font-semibold mb-6">Fintech Platforms: The Good, the Bad, and the Limitations</h2>
 
@@ -57,6 +58,8 @@ However, these benefits come with significant limitations. The simplicity that m
 <p class="mb-6">
 For many investors, there comes a point where their ambitions outpace what a simple app can offer. This is particularly true for those looking beyond simple diversification to explore advanced investment options.
 </p>
+
+<img src="/invest/diverse.jpg" class="w-full h-full mb-6" />
 
 <h3  class="text-xl font-semibold mb-6">
 What a Professional Investment Management Firm Offers
@@ -99,6 +102,8 @@ How do you know when you've reached the limits of your savings app? Here's a che
 </li>
 </ul>
 
+<img src="/invest/elegant.jpg" class="w-full h-full mb-6" />
+
 <h4  class="text-xl font-semibold mb-6">The Next Step in Your Financial Journey</h4>
 
 <p class="mb-6">
@@ -119,7 +124,7 @@ Ready to graduate from your savings app and take control of your financial futur
     metaDescription:
       "Learn how FX fluctuations silently erode wealth and discover strategies to protect your portfolio from currency risk with Run Alpha's expert guidance.",
     author: "Run Alpha Team",
-    date: "2024-03-12",
+    date: "2025-09-10",
     readTime: "10 min read",
     category: "FX Risk Management",
     tags: [
@@ -129,8 +134,7 @@ Ready to graduate from your savings app and take control of your financial futur
       "wealth management",
       "hedging",
     ],
-    image:
-      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/silent/sortter-txNIG9pDvo8-unsplash.jpg",
     slug: "fx-fluctuations-portfolio-risks",
     featured: false,
     published: true,
@@ -142,6 +146,8 @@ FX fluctuations portfolio risks are one of the least talked about threats to wea
 <p class="mb-6">
 That's what FX fluctuations are to wealth. They can quietly wash away value, or, with the right shelter, become a force you no longer fear. For businesses, families, and high-net-worth individuals, FX can open doors to global diversification, access to new markets, and returns that local assets may not provide. Yet, the same movements that create opportunity can also quietly erode portfolio value if unmanaged.
 </p>
+
+<img src="/silent/sortter-txNIG9pDvo8-unsplash.jpg" class="w-full h-full" />
 
 <h3 class="text-2xl font-semibold mb-6">
 The Mechanics: Why Currencies Move like Tides?
@@ -163,6 +169,8 @@ Currencies behave like ocean tides - they are always moving, sometimes calm, som
 <p class="mb-6">
 Even small shifts matter. A 5% swing in exchange rates can erase half of your expected investment gains, turning a good investment into a disappointing one. That's why understanding FX is not optional — it's central to wealth management.
 </p>
+
+<img src="/silent/tech-daily-ztYmIQecyH4-unsplash.jpg" class="w-full h-full mb-6" />
 
 <h3 class="text-xl font-semibold mb-6">
 When FX Fluctuations Weather Damages Wealth
@@ -187,6 +195,8 @@ For Nigerian investors, the Naira has swung more than 20% in a single year, enou
 Ignoring FX exposure can cost families millions. A PwC Global Family Office Report (2023) revealed that over 60% of family offices rank FX volatility as a top concern, reflecting the growing impact on cross-border wealth. Moreover, in emerging markets, the cost is sharper. The Nigerian naira alone saw swings of over 20% in 2023, wiping out expected gains for many investors with local holdings. Doing nothing about FX risk isn't neutral — it's an active choice that leaves wealth vulnerable.
 </p>
 
+<img src="/silent/team-business-workers-reviewing-statistics-infographics.jpg" class="w-full h-full mb-6" />
+
 
 <h3 class="text-xl font-semibold mb-6">
 Run Alpha: Building FX Resilient Portfolios
@@ -203,6 +213,7 @@ Just as homeowners insure against fire or flood, investors can insure their weal
 A practical solution is to match the currency of assets with the currency of liabilities. If you buy a house in Europe, it is smarter to finance it with a Euro loan. That way, the rent and mortgage repayments balance each other out. This keeps portfolios balanced and reduces unnecessary strain.</li>
 </ul>
 
+<img src="/silent/towfiqu-barbhuiya-nApaSgkzaxg-unsplash.jpg" class="w-full h-full mb-6" />
 
 <h3 class="text-xl font-semibold mb-6">
  Turning FX Fluctuations into Opportunities
@@ -239,7 +250,7 @@ Run Alpha's Approach to FX Fluctuations
     metaDescription:
       "Discover how hedging strategies for FX fluctuations protect Nigerian and African investors from currency risk. Learn about forwards, swaps, and diversification with Run Alpha.",
     author: "Run Alpha Team",
-    date: "2024-03-10",
+    date: "2025-09-10",
     readTime: "12 min read",
     category: "Hedging Strategies",
     faqs: [
@@ -289,7 +300,7 @@ Run Alpha's Approach to FX Fluctuations
       "swaps",
     ],
     image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "/hedging/black-female-ceo-attends-video-call-connection-with-business-partners.jpg",
     slug: "hedging-strategies-fx-fluctuations",
     featured: false,
     published: true,
@@ -301,6 +312,8 @@ Hedging strategies for FX fluctuations are critical for anyone managing wealth a
 <p class="mb-6">
 For African investors, family offices, and businesses, currency volatility is not theory — it's lived reality. A 10% stock market gain abroad can vanish if the naira strengthens against the dollar. But with the right hedging strategies, investors can secure their portfolios, protect family wealth, and even use FX volatility as an advantage.
 </p>
+
+<img src="/hedging/black-female-ceo-attends-video-call-connection-with-business-partners.jpg" />
 
 <h3 class="text-xl mb-6 font-semibold">
 Why Investors in Nigeria Need Currency Hedging for Wealth Protection
@@ -337,6 +350,8 @@ Hedging strategies do more than prevent losses. They play a dual role:
 In 2022, when the euro fell nearly 12% against the U.S. dollar, U.S. investors with hedges both protected their gains and bought discounted European assets. Hedging is therefore a tool for wealth protection and smart wealth growth.
 </p>
 
+<img src="/hedging/maxim-hopman-fiXLQXAhCfk-unsplash.jpg" class="w-full h-full mb-6" />
+
 <h3 class="text-xl mb-6 font-semibold">
  Proven FX Hedging Strategies for Global and African Investors
 </h3>
@@ -366,15 +381,19 @@ Globally, forward contracts are widely used by family offices and institutional 
 For example, consider an African infrastructure company financing a project in euros but earning revenues in naira. Without protection, exchange rate movements could make repayments unpredictable and dangerous. A currency swap solves this by aligning cash flows — euro debt is matched with euro payments, reducing the FX mismatch.</p>
 <p class="mb-4">Family offices and wealthy individuals also use swaps when managing multi-year commitments, such as offshore property loans or cross-border investments. For those planning generational wealth transfers, swaps provide long-term certainty in a world where currency values often shift drastically over time.</p>
 </li>
-
 <li>
+
 <h4 class="mb-4"><strong>Diversification Across Currencies: A Natural Hedge</strong></h4>
+
+
 <p class="mb-4">Not all hedging requires financial contracts. One of the oldest and most effective methods is currency diversification — holding assets in more than one stable currency. Just like diversifying across industries reduces stock market risk, spreading wealth across currencies reduces FX exposure.</p>
 <p class="mb-4">For example, a Nigerian family office might hold part of its portfolio in U.S. dollars, another in British pounds, some in euros, and a portion in Swiss francs. If one currency falls, gains in another can help balance the loss. This "natural hedge" ensures the family's overall wealth isn't tied to the fate of a single currency.</p>
 <p class="mb-4">
 Diversification is especially important in Africa, where many currencies (like the naira, rand, and shilling) have seen significant volatility. By balancing portfolios with global currencies, investors protect purchasing power and gain access to opportunities in multiple markets.</p>
 </li>
 </ul>
+
+<img src="/hedging/coworkers-addressing-innovation-initiatives-research-development-efforts (1).jpg" class="w-full h-full mb-6" />
 
 <h3 class="font-semibold text-xl mb-6">
 Hedging in the Nigerian and African Context
@@ -418,6 +437,8 @@ It's not only Nigeria. Across Africa:
 <p class="mb-6">
 For businesses, this makes trade and debt servicing harder. For families, it reduces the true value of savings and inheritance. Hedging strategies provide a shield against these realities.</p>
 
+<img src="/hedging/joshua-mayo-PNodyzJcccA-unsplash.jpg" class="w-full h-full mb-6" />
+
 <h3 class="mb-4 text-xl font-semibold">
 How Run Alpha Helps Investors Hedge Against FX Fluctuations</h3>
 
@@ -459,7 +480,7 @@ FAQs About Hedging Strategies for FX Fluctuations
     metaDescription:
       "Facing a volatile market? Learn how a strategic investment management approach using foreign exchange assets can protect and grow your portfolio.",
     author: "Run Alpha Team",
-    date: "2024-03-08",
+    date: "2025-09-10",
     readTime: "9 min read",
     category: "Portfolio Protection",
     tags: [
@@ -470,8 +491,7 @@ FAQs About Hedging Strategies for FX Fluctuations
       "Eurobonds",
       "diversification",
     ],
-    image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "/riding/towfiqu-barbhuiya-joqWSI9u_XM-unsplash.jpg",
     slug: "fx-assets-protect-nigerian-portfolios",
     featured: false,
     published: true,
@@ -486,7 +506,6 @@ FAQs About Hedging Strategies for FX Fluctuations
     <p class="mb-6">
     If your portfolio is made up mostly of Naira-based assets, you are over-exposed to local economic risks. Inflation, unstable policies, and limited market opportunities put your financial goals in danger. It feels like running on a treadmill - working harder, yet going nowhere. But there is a way to step off the treadmill: foreign exchange (FX) assets.
     </p>
-
 
 <h3 class="text-xl font-semibold mb-6">
  Why FX Assets Are The Missing Piece For a Diversified Portfolio
@@ -505,6 +524,8 @@ When the Naira weakens, wealth held only in local assets shrinks. But investing 
   <p class="mb-6">
 This is part of FX hedging, where you balance local losses with foreign gains. A Nigerian Eurobond paying 7% in USD not only delivers steady interest but also multiplies in naira terms whenever the Naira depreciates.
 </p>
+
+    <img src="/riding/towfiqu-barbhuiya-joqWSI9u_XM-unsplash.jpg" class="w-full h-full mb-6" />
 
 <h4 class="text-lg font-semibold mb-6">
  Accessing New Markets
@@ -568,6 +589,8 @@ Gold has been a trusted store of value for centuries. During inflation or curren
 This form of asset allocation gives your portfolio balance beyond stocks and bonds.
 </p>
 
+    <img src="/riding/scott-graham-5fNmWej4tAA-unsplash.jpg" class="w-full h-full mb-6" />
+
 <h3 class="text-xl font-semibold mb-6">
  What This Strategy Looks Like in Numbers
  </h3>
@@ -592,6 +615,8 @@ Here is a snapshot of how fund allocation to the proposed FX assets could have w
     <p class="mb-6">
 A Naira-only investor earning 17% local yield still loses ground when inflation runs at an average rate of 20% (real return: -3%). On the other hand, a diversified FX investor riding Eurobonds, ETFs, and Gold could see naira-adjusted modest returns of 20% - 28%. The story is clear: one investor struggles against the current, the other charts a stronger course across global waters.
 </p>
+
+<img src="/riding/flat-lay-business-concept (1).jpg" class="h-full w-full mb-6" />
 
 <h3 class="text-xl font-semibold mb-6">
  Build a Resilient Portfolio for the Future

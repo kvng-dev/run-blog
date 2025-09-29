@@ -4,10 +4,8 @@ import {
   Linkedin,
   Mail,
   Rss,
-  Phone,
   MapPin,
   Globe,
-  TrendingUp,
   Shield,
   Users,
 } from "lucide-react";
@@ -53,9 +51,10 @@ export function BlogFooter() {
                   </div>
                 </Link>
                 <p className="text-gray-300 leading-relaxed">
-                  Expert insights on investment management, FX risk management,
-                  and wealth protection strategies. Empowering investors to
-                  navigate global markets with confidence.
+                  We&apos;re more than wealth managers - we&apos;re partners in
+                  preserving heritage, navigatin today&apos;s market, growing
+                  across borders, and building legacies that last for
+                  genrations.
                 </p>
               </div>
 
@@ -72,7 +71,7 @@ export function BlogFooter() {
                 <div className="flex items-center space-x-3 text-gray-300">
                   <MapPin className="h-4 w-4 text-blue-400" />
                   <span className="text-sm">
-                    1 Uwa, Close, Off Billings Way, <br /> Lagos, Nigeria
+                    1 Uwa Close, Off Billings Way, <br /> Lagos, Nigeria
                   </span>
                 </div>
               </div>
@@ -113,23 +112,15 @@ export function BlogFooter() {
                 {[
                   { label: "All Articles", href: "/blog" },
                   {
-                    label: "Investment Management",
-                    href: "/blog/category/investment-management",
+                    label: "Contact Us",
+                    href: "https://runalpha.co/contact",
                   },
                   {
-                    label: "FX Risk Management",
-                    href: "/blog/category/fx-risk-management",
+                    label: "What we Offer",
+                    href: "https://runalpha.co/services",
                   },
                   {
-                    label: "Hedging Strategies",
-                    href: "/blog/category/hedging-strategies",
-                  },
-                  {
-                    label: "Portfolio Protection",
-                    href: "/blog/category/portfolio-protection",
-                  },
-                  {
-                    label: "About Run Alpha",
+                    label: "About Us",
                     href: "https://runalpha.co/about",
                   },
                 ].map((link, index) => (
@@ -156,27 +147,19 @@ export function BlogFooter() {
               <ul className="space-y-3">
                 {[
                   {
-                    label: "Wealth Management",
-                    href: "https://runalpha.co/wealth-management",
+                    label: "Private Wealth",
+                    href: "https://runalpha.co/private-wealth",
                   },
                   {
-                    label: "Investment Advisory",
-                    href: "https://runalpha.co/investment-advisory",
+                    label: "Currency Solutions",
+                    href: "https://runalpha.co/currency-solutions",
                   },
                   {
-                    label: "Risk Assessment",
-                    href: "https://runalpha.co/risk-assessment",
+                    label: "Hedge Fund",
+                    href: "https://runalpha.co/hedge-fund",
                   },
                   {
-                    label: "Portfolio Analysis",
-                    href: "https://runalpha.co/portfolio-analysis",
-                  },
-                  {
-                    label: "FX Hedging Solutions",
-                    href: "https://runalpha.co/fx-solutions",
-                  },
-                  {
-                    label: "Family Office Services",
+                    label: "Family Office ",
                     href: "https://runalpha.co/family-office",
                   },
                 ].map((service, index) => (

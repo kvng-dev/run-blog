@@ -1,9 +1,9 @@
 import React from "react";
-import { TrendingUp, Globe, Shield, ArrowRight } from "lucide-react";
+import { TrendingUp, ArrowRight } from "lucide-react";
 
 const BlogHeroSection = () => {
   return (
-    <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 overflow-hidden mt-16">
+    <section className="relative bg-gradient-to-br from-slate-900 via-[#01386e] to-slate-900 overflow-hidden mt-16">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -31,23 +31,22 @@ const BlogHeroSection = () => {
 
             {/* Main Heading */}
             <h1 className="text-4xl md:text-5xl font-semibold text-white mb-6 leading-tight">
-              Master Global
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400">
-                Investment Strategies
+              Continuity,
+              <span className="block text-transparent bg-clip-text bg-gradient-to-tr from-[#01386e] via-[#6CB4B8] to-cyan-400">
+                Prosperity, Legacy
               </span>
             </h1>
 
             {/* Subheading */}
             <p className="text-base  text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Navigate volatile markets with expert insights on FX risk
-              management, portfolio protection, and wealth preservation
-              strategies from Run Alpha&apos;s seasoned investment
-              professionals.
+              More than mangers of capital, we are architects of legacy —
+              offering exclusive, tailored solutios to preserve and grow your
+              family&apos;s wealth in a dynamic global landscape
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full font-medium  hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 items-center flex justify-center">
+              <button className="group bg-gradient-to-br from-[#01386e] to-blue-800 text-white px-6 py-2 rounded-full font-medium  hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 items-center flex justify-center">
                 <span className="flex items-center gap-2">
                   Explore Articles
                   <ArrowRight
@@ -116,14 +115,14 @@ const BlogHeroSection = () => {
               </div>
 
               {/* Floating Cards */}
-              <div className="absolute -top-4 -right-4 bg-gradient-to-br from-blue-600 to-blue-700 text-white p-4 rounded-xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+              <div className="absolute -top-4 -right-4 bg-gradient-to-br from-[#01386e] to-blue-700 text-white p-4 rounded-xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
                 <div className="text-xs text-blue-200 mb-1">Latest Article</div>
                 <div className="font-semibold text-sm">
                   FX Hedging Strategies
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-purple-600 to-purple-700 text-white p-4 rounded-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+              <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-[#6CB4B8]/90 to-[#6CB4B8] text-white p-4 rounded-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300">
                 <div className="text-xs text-purple-200 mb-1">
                   Trending Topic
                 </div>

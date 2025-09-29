@@ -67,7 +67,7 @@ const SingleArticleCard = ({ article }: Props) => {
       <div className="border-b border-gray-100 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <button
-            className="flex items-center gap-2 text-gray-600 bg-white hover:text-gray-900 transition-colors cursor-pointer absolute top-16 left-32 z-30 px-6 py-1.5 rounded-3xl"
+            className="hidden md:flex items-center gap-2 text-gray-600 bg-white hover:text-gray-900 transition-colors cursor-pointer absolute top-16 left-32 z-30 px-6 py-1.5 rounded-3xl"
             onClick={() => router.back()}
           >
             <ArrowLeft size={18} />
