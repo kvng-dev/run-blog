@@ -52,7 +52,7 @@ export function BlogFooter() {
                 </Link>
                 <p className="text-gray-300 leading-relaxed">
                   We&apos;re more than wealth managers - we&apos;re partners in
-                  preserving heritage, navigatin today&apos;s market, growing
+                  preserving heritage, navigating today&apos;s market, growing
                   across borders, and building legacies that last for
                   genrations.
                 </p>
@@ -62,7 +62,9 @@ export function BlogFooter() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-gray-300">
                   <Globe className="h-4 w-4 text-blue-400" />
-                  <span className="text-sm">www.runalpha.co</span>
+                  <a href="https://runalpha.co">
+                    <span className="text-sm">www.runalpha.co</span>
+                  </a>
                 </div>
                 <div className="flex items-center space-x-3 text-gray-300">
                   <Mail className="h-4 w-4 text-blue-400" />
@@ -90,7 +92,9 @@ export function BlogFooter() {
                   size="icon"
                   className="border-gray-600 hover:bg-blue-600 hover:border-blue-600 transition-all"
                 >
-                  <Linkedin className="h-4 w-4" />
+                  <a href="https://www.linkedin.com/company/runalpha">
+                    <Linkedin className="h-4 w-4" />
+                  </a>
                 </Button>
                 <Button
                   variant="secondary"
@@ -148,11 +152,11 @@ export function BlogFooter() {
                 {[
                   {
                     label: "Private Wealth",
-                    href: "https://runalpha.co/private-wealth",
+                    href: "https://runalpha.co/services/#private-wealth",
                   },
                   {
                     label: "Currency Solutions",
-                    href: "https://runalpha.co/currency-solutions",
+                    href: "https://runalpha.co/services/#currency-solutions",
                   },
                   {
                     label: "Hedge Fund",
@@ -160,7 +164,7 @@ export function BlogFooter() {
                   },
                   {
                     label: "Family Office ",
-                    href: "https://runalpha.co/family-office",
+                    href: "https://runalpha.co/services/#family-office",
                   },
                 ].map((service, index) => (
                   <li key={index}>
@@ -245,19 +249,16 @@ export function BlogFooter() {
               <p>© {currentYear} Run Alpha. All rights reserved.</p>
               <div className="flex items-center gap-4">
                 <Link
-                  href="/privacy"
+                  href="https://runalpha.co/privacy-policy"
                   className="hover:text-white transition-colors"
                 >
                   Privacy Policy
                 </Link>
-                <Link
-                  href="/terms"
-                  className="hover:text-white transition-colors"
-                >
+                <Link href="#" className="hover:text-white transition-colors">
                   Terms of Service
                 </Link>
                 <Link
-                  href="/disclaimer"
+                  href="https://runalpha.co/disclaimer"
                   className="hover:text-white transition-colors"
                 >
                   Investment Disclaimer
@@ -266,8 +267,7 @@ export function BlogFooter() {
             </div>
 
             <div className="flex items-center gap-2 text-sm text-gray-400">
-              <span>Regulated by</span>
-              <span className="text-blue-400 font-medium">SEC Nigeria</span>
+              <span className="text-blue-400 font-medium">RC 8535781</span>
             </div>
           </div>
         </div>

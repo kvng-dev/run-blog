@@ -118,7 +118,7 @@ const BlogHeroSection = () => {
               <div className="absolute -top-4 -right-4 bg-gradient-to-br from-[#01386e] to-blue-700 text-white p-4 rounded-xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
                 <div className="text-xs text-blue-200 mb-1">Latest Article</div>
                 <div className="font-semibold text-sm">
-                  FX Hedging Strategies
+                  Foreign Exchange Risk Strategies
                 </div>
               </div>
 
@@ -126,7 +126,7 @@ const BlogHeroSection = () => {
                 <div className="text-xs text-purple-200 mb-1">
                   Trending Topic
                 </div>
-                <div className="font-semibold text-sm">Naira Volatility</div>
+                <div className="font-semibold text-sm">Currency Volatility</div>
               </div>
             </div>
           </div>

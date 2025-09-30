@@ -58,7 +58,7 @@ export function FeaturedPosts() {
             </div>
             <Button
               variant="ghost"
-              className="w-full justify-between group-hover:bg-primary group-hover:text-primary-foreground transition-colors mt-6"
+              className="w-full justify-between hover:bg-blue-700 hover:text-primary-foreground transition-colors mt-6 cursor-pointer"
               onClick={() => addSlugToParams(art.slug)}
             >
               Read More
