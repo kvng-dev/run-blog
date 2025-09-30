@@ -122,7 +122,7 @@ const BlogHeroSection = () => {
                 </div>
               </div>
 
-              <div className="absolute -bottom-4 -left-4 bg-gradient-to-br from-[#6CB4B8]/90 to-[#6CB4B8] text-white p-4 rounded-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+              <div className="absolute -bottom-12 -left-4 bg-gradient-to-br from-[#6CB4B8]/90 to-[#6CB4B8] text-white p-4 rounded-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300">
                 <div className="text-xs text-purple-200 mb-1">
                   Trending Topic
                 </div>

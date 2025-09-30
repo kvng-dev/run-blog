@@ -210,7 +210,7 @@ export function BlogFooter() {
 
                 <Button
                   onClick={handleNewsletterSubmit}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+                  className="w-full bg-gradient-to-tr from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-300"
                   disabled={isSubscribed}
                 >
                   {isSubscribed ? (
@@ -267,7 +267,7 @@ export function BlogFooter() {
             </div>
 
             <div className="flex items-center gap-2 text-sm text-gray-400">
-              <span className="text-blue-400 font-medium">RC 8535781</span>
+              <span className="text-[#6CB4B8] font-medium">RC 8535781</span>
             </div>
           </div>
         </div>

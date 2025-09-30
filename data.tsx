@@ -300,7 +300,7 @@ Run Alpha's Approach to FX Fluctuations
       "swaps",
     ],
     image:
-      "/hedging/black-female-ceo-attends-video-call-connection-with-business-partners.jpg",
+      "/hedging/determined-female-ceo-analyzes-financial-reports-develops-growth-strategy.jpg",
     slug: "hedging-strategies-fx-fluctuations",
     featured: false,
     published: true,
@@ -313,7 +313,7 @@ Hedging strategies for FX fluctuations are critical for anyone managing wealth a
 For African investors, family offices, and businesses, currency volatility is not theory — it's lived reality. A 10% stock market gain abroad can vanish if the naira strengthens against the dollar. But with the right hedging strategies, investors can secure their portfolios, protect family wealth, and even use FX volatility as an advantage.
 </p>
 
-<img src="/hedging/black-female-ceo-attends-video-call-connection-with-business-partners.jpg" />
+<img src="/hedging/determined-female-ceo-analyzes-financial-reports-develops-growth-strategy.jpg" />
 
 <h3 class="text-xl mb-6 font-semibold">
 Why Investors in Nigeria Need Currency Hedging for Wealth Protection
