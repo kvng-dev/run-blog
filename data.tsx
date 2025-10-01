@@ -395,6 +395,8 @@ Diversification is especially important in Africa, where many currencies (like t
 
 <img src="/hedging/coworkers-addressing-innovation-initiatives-research-development-efforts (1).jpg" class="w-full h-full mb-6" />
 
+<img src="/hedging/coworkers-addressing-innovation-initiatives-research-development-efforts (1).jpg" class="mb-6" />
+
 <h3 class="font-semibold text-xl mb-6">
 Hedging in the Nigerian and African Context
 </h3>

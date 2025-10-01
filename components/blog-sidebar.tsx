@@ -256,8 +256,8 @@ const BlogSidebar = () => {
               size="sm"
               className="flex items-center gap-2 text-orange-600 border-orange-200 hover:bg-orange-50 hover:border-orange-300 transition-all"
             >
-              <Rss className="h-3 w-3" />
-              <span className="text-xs">RSS</span>
+              <Instagram className="h-3 w-3" />
+              <span className="text-xs">Instagram</span>
             </Button>
           </div>
         </div>

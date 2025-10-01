@@ -8,6 +8,8 @@ import {
   Globe,
   Shield,
   Users,
+  Instagram,
+  Facebook,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -85,12 +87,14 @@ export function BlogFooter() {
                   size="icon"
                   className="border-gray-600 hover:bg-blue-600 hover:border-blue-600 transition-all"
                 >
-                  <Twitter className="h-4 w-4" />
+                  <a href="https://www.instagram.com/runalpha.co/">
+                    <Instagram className="h-4 w-4" />
+                  </a>
                 </Button>
                 <Button
                   variant="secondary"
                   size="icon"
-                  className="border-gray-600 hover:bg-blue-600 hover:border-blue-600 transition-all"
+                  className="border-gray-600 hover:bg-cyan-600 hover:border-cyan-600 transition-all"
                 >
                   <a href="https://www.linkedin.com/company/runalpha">
                     <Linkedin className="h-4 w-4" />
@@ -101,7 +105,9 @@ export function BlogFooter() {
                   size="icon"
                   className="border-gray-600 hover:bg-orange-600 hover:border-orange-600 transition-all"
                 >
-                  <Rss className="h-4 w-4" />
+                  <a href=" https://www.facebook.com/profile.php?id=61581323386413">
+                    <Facebook className="h-4 w-4" />
+                  </a>
                 </Button>
               </div>
             </div>
