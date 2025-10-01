@@ -100,8 +100,8 @@ const BlogHeroSection = () => {
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-300">FX Risk Exposure</span>
-                    <span className="text-green-400 font-medium">-12.5%</span>
+                    <span className="text-gray-300">FX Exposure</span>
+                    <span className="text-green-400 font-medium">12.5%</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-300">Portfolio Growth</span>
@@ -109,16 +109,16 @@ const BlogHeroSection = () => {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-300">Global Exposure</span>
-                    <span className="text-purple-400 font-medium">67%</span>
+                    <span className="text-purple-400 font-medium">33%</span>
                   </div>
                 </div>
               </div>
 
               {/* Floating Cards */}
-              <div className="absolute -top-4 -right-4 bg-gradient-to-br from-[#01386e] to-blue-700 text-white p-4 rounded-xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+              <div className="absolute -top-4 -right-4 bg-gradient-to-br from-[#01386e] to-blue-700 text-white p-4 rounded-xl shadow-lg transform rotate-20 sm:rotate-3 hover:rotate-0 transition-transform duration-300">
                 <div className="text-xs text-blue-200 mb-1">Latest Article</div>
-                <div className="font-semibold text-sm">
-                  Foreign Exchange Risk Strategies
+                <div className="font-semibold text-xs md:text-sm">
+                  Foreign Exchange Strategies
                 </div>
               </div>
 

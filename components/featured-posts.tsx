@@ -19,17 +19,17 @@ export function FeaturedPosts() {
     <>
       {article.map((art, index) => (
         <section
-          className="lg:py-16 md:py-12 sm:py-8 py-4 px-4 md:px-16 lg:px-24  w-full  grid md:grid-cols-3 place-items-center justify-center gap-6 bg-gray-50"
+          className="lg:py-16 md:py-12 sm:py-8 py-4 px-4 md:px-16 xl:px-24  w-full  grid md:grid-cols-3 place-items-center justify-center gap-6 bg-gray-50"
           key={index}
         >
-          <div className="flex flex-col order-2" key={index}>
+          <div className="flex flex-col order-2 w-full" key={index}>
             <Badge
               variant="secondary"
               className="text-[10px] font-medium hidden md:block"
             >
               {art.featured ? "Featured" : ""}
             </Badge>
-            <h2 className="text-lg lg:text-3xl font-bold lg:w-[400px] lg:my-8 my-4">
+            <h2 className="text-lg lg:text-3xl font-bold lg:my-8 my-4">
               {art.title}
             </h2>
             <div className="flex gap-16">

@@ -101,7 +101,7 @@ const BlogSidebar = () => {
   };
 
   return (
-    <aside className="hidden lg:block lg:w-80 xl:w-96 border-l border-gray-100">
+    <aside className="hidden lg:block lg:w-64 xl:w-96 border-l border-gray-100">
       <div className="sticky top-20 p-6 space-y-8 max-h-[calc(100vh-5rem)] overflow-y-auto">
         {/* Search Section */}
         <div className="space-y-3">

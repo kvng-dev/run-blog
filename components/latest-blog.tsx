@@ -14,7 +14,7 @@ export function LatestBlog() {
     router.push(`/${slug}`);
   };
   return (
-    <section className="py-16 px-4 sm:px-6 md:px-16 lg:px-32 w-full ">
+    <section className="py-16 px-4 sm:px-6 md:px-16 2xl:px-32 w-full ">
       <div className="lg:container lg:mx-auto w-full ">
         <div className="text-start md:mb-12 mb-4">
           <Badge variant="secondary" className="text-[10px]">
@@ -22,7 +22,7 @@ export function LatestBlog() {
           </Badge>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {recentPosts.slice(0, 3).map((post) => (
             <Card
               onClick={() => addSlugToParams(post.slug)}
@@ -45,7 +45,7 @@ export function LatestBlog() {
                 <p className="text-muted-foreground mb-4 text-sm">
                   {post.excerpt}
                 </p>
-                <div className="flex items-center justify-between text-xs md:text-sm text-muted-foreground mb-4">
+                <div className="flex items-center justify-between text-xs md:text-sm text-muted-foreground mb-4 flex-wrap">
                   <div className="flex items-center space-x-1">
                     <User className="h-4 w-4" />
                     <span>{post.author}</span>
