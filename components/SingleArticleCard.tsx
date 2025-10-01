@@ -87,7 +87,7 @@ const SingleArticleCard = ({ article }: Props) => {
 
         {/* Category Badge */}
         <div className="absolute top-6 right-6">
-          <span className="bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-semibold">
+          <span className="bg-[#01386e] text-white px-4 py-2 rounded-full text-xs font-semibold">
             {article.category}
           </span>
         </div>
@@ -130,7 +130,7 @@ const SingleArticleCard = ({ article }: Props) => {
 
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors ml-auto"
+              className="flex items-center gap-2 text-[#01386e] hover:text-[#01386e] transition-colors ml-auto"
             >
               <Share2 size={18} />
               <span>Share</span>
@@ -149,7 +149,7 @@ const SingleArticleCard = ({ article }: Props) => {
                        prose-strong:text-gray-900 prose-strong:font-semibold
                        prose-ul:text-gray-700 prose-li:mb-2
                        prose-ol:text-gray-700
-                       prose-blockquote:border-l-4 prose-blockquote:border-blue-600
+                       prose-blockquote:border-l-4 prose-blockquote:border-[#01386e]
                        prose-blockquote:bg-blue-50 prose-blockquote:p-6 prose-blockquote:my-8
                        prose-blockquote:text-gray-800 prose-blockquote:italic
                        prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline"
@@ -215,7 +215,7 @@ const SingleArticleCard = ({ article }: Props) => {
                     />
                   </div>
                   <div className="p-6">
-                    <span className="text-blue-600 text-sm font-semibold">
+                    <span className="text-[#01386e] text-sm font-semibold">
                       {article.category}
                     </span>
                     <h3 className="text-xl font-bold text-gray-900 mt-2 mb-3">
