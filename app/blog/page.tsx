@@ -124,7 +124,7 @@ const AllArticlesPage = () => {
                 placeholder="Search articles..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#01386e] focus:border-transparent"
               />
             </div>
 
@@ -135,7 +135,7 @@ const AllArticlesPage = () => {
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-[#01386e] focus:border-transparent"
                 >
                   {categories.map((category) => (
                     <option key={category} value={category}>
@@ -151,7 +151,7 @@ const AllArticlesPage = () => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-[#01386e] focus:border-transparent"
                 >
                   <option value="newest">Newest First</option>
                   <option value="oldest">Oldest First</option>
@@ -166,7 +166,7 @@ const AllArticlesPage = () => {
                   onClick={() => setViewMode("grid")}
                   className={`p-2.5 ${
                     viewMode === "grid"
-                      ? "bg-blue-600 text-white"
+                      ? "bg-[#01386e] text-white"
                       : "bg-white text-gray-600 hover:bg-gray-50"
                   } transition-colors`}
                 >
@@ -176,7 +176,7 @@ const AllArticlesPage = () => {
                   onClick={() => setViewMode("list")}
                   className={`p-2.5 ${
                     viewMode === "list"
-                      ? "bg-blue-600 text-white"
+                      ? "bg-[#01386e] text-white"
                       : "bg-white text-gray-600 hover:bg-gray-50"
                   } transition-colors`}
                 >
@@ -211,7 +211,7 @@ const AllArticlesPage = () => {
                 setSearchQuery("");
                 setSelectedCategory("All");
               }}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className="bg-[#01386e] text-white px-6 py-2 rounded-lg hover:bg-[#01386e] transition-colors"
             >
               Clear Filters
             </button>
@@ -234,13 +234,13 @@ const AllArticlesPage = () => {
                         />
                         {article.featured && (
                           <div className="absolute top-4 left-4">
-                            <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                            <span className="bg-[#01386e] text-white px-3 py-1 rounded-full text-sm font-semibold">
                               Featured
                             </span>
                           </div>
                         )}
                         <div className="absolute top-4 right-4">
-                          <span className="bg-white/90 backdrop-blur-sm text-blue-600 px-3 py-1 rounded-full text-xs font-semibold">
+                          <span className="bg-white/90 backdrop-blur-sm text-[#01386e] px-3 py-1 rounded-full text-xs font-semibold">
                             {article.category}
                           </span>
                         </div>
@@ -260,7 +260,7 @@ const AllArticlesPage = () => {
                           </div>
                         </div>
 
-                        <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#01386e] transition-colors">
                           {article.title}
                         </h2>
 
@@ -277,7 +277,7 @@ const AllArticlesPage = () => {
                           </div>
                           <ArrowRight
                             size={16}
-                            className="text-blue-600 group-hover:translate-x-1 transition-transform"
+                            className="text-[#01386e] group-hover:translate-x-1 transition-transform"
                           />
                         </div>
                       </div>
@@ -302,7 +302,7 @@ const AllArticlesPage = () => {
                           />
                           {article.featured && (
                             <div className="absolute top-4 left-4">
-                              <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                              <span className="bg-[#01386e] text-white px-3 py-1 rounded-full text-sm font-semibold">
                                 Featured
                               </span>
                             </div>
@@ -312,7 +312,7 @@ const AllArticlesPage = () => {
                         <div className="md:w-2/3 p-6 flex flex-col justify-between">
                           <div>
                             <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                              <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold">
+                              <span className="bg-blue-100 text-[#01386e] px-3 py-1 rounded-full text-xs font-semibold">
                                 {article.category}
                               </span>
                               <div className="flex items-center gap-1">
@@ -327,7 +327,7 @@ const AllArticlesPage = () => {
                               </div>
                             </div>
 
-                            <h2 className="text-2xl font-bold text-gray-900 mb-3 hover:text-blue-600 transition-colors">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-3 hover:text-[#01386e] transition-colors">
                               {article.title}
                             </h2>
 
@@ -343,7 +343,7 @@ const AllArticlesPage = () => {
                                 {article.author}
                               </span>
                             </div>
-                            <div className="flex items-center gap-2 text-blue-600 font-medium">
+                            <div className="flex items-center gap-2 text-[#01386e] font-medium">
                               <span>Read More</span>
                               <ArrowRight size={16} />
                             </div>
@@ -375,7 +375,7 @@ const AllArticlesPage = () => {
                         onClick={() => handlePageChange(page)}
                         className={`px-4 py-2 text-sm rounded-lg transition-colors ${
                           currentPage === page
-                            ? "bg-blue-600 text-white"
+                            ? "bg-[#01386e] text-white"
                             : "border border-gray-300 hover:bg-gray-50"
                         }`}
                       >
