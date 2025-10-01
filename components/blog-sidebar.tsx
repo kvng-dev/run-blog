@@ -20,33 +20,33 @@ import React, { KeyboardEvent, useState } from "react";
 const sidebarItems = [
   {
     name: "Investment Management",
-    href: "/blog/category/investment-management",
+    href: "/investment-management",
     count: 12,
     icon: TrendingUp,
   },
   {
     name: "FX Risk Management",
-    href: "/blog/category/fx-risk-management",
+    href: "/fx-risk-management",
     count: 8,
   },
   {
     name: "Hedging Strategies",
-    href: "/blog/category/hedging-strategies",
+    href: "/hedging-strategies",
     count: 6,
   },
   {
     name: "Portfolio Protection",
-    href: "/blog/category/portfolio-protection",
+    href: "/portfolio-protection",
     count: 9,
   },
   {
     name: "Market Analysis",
-    href: "/blog/category/market-analysis",
+    href: "/market-analysis",
     count: 15,
   },
   {
     name: "Wealth Management",
-    href: "/blog/category/wealth-management",
+    href: "/wealth-management",
     count: 7,
   },
 ];
@@ -139,7 +139,7 @@ const BlogSidebar = () => {
             {sidebarItems.map((item, index) => (
               <Link
                 key={index}
-                href={item.href}
+                href={"#"}
                 className="group flex items-center justify-between py-2.5 px-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
               >
                 <div className="flex items-center gap-2">

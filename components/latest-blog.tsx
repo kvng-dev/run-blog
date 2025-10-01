@@ -37,7 +37,7 @@ export function LatestBlog() {
                 />
               </div>
               <CardHeader className="">
-                <h3 className="md:text-xl font-medium text-card-foreground group-hover:text-blue-700 transition-colors">
+                <h3 className="md:text-xl font-medium text-card-foreground group-hover:text-[#01386e] transition-colors">
                   {post.title}
                 </h3>
               </CardHeader>
@@ -61,7 +61,7 @@ export function LatestBlog() {
                 </div>
                 <Button
                   variant="ghost"
-                  className="w-full justify-between group-hover:bg-blue-700 group-hover:text-primary-foreground transition-colors"
+                  className="w-full justify-between group-hover:bg-[#01386e] group-hover:text-primary-foreground transition-colors"
                 >
                   Read More
                   <ArrowRight className="h-4 w-4" />
