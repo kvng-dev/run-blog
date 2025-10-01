@@ -292,7 +292,7 @@ const AllArticlesPage = () => {
                     key={article.id}
                     className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
                   >
-                    <Link href={`/blog/${article.slug}`}>
+                    <Link href={`/${article.slug}`}>
                       <div className="md:flex">
                         <div className="md:w-1/3 relative">
                           <img
