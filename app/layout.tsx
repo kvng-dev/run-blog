@@ -9,7 +9,11 @@ const geistSans = Fira_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Blog | Run Alpha",
+  metadataBase: new URL("https://blog.runalpha.com"),
+  title: {
+    default: "Blog | Run Alpha",
+    template: "%s | Run Alpha Blog",
+  },
   description:
     "Insights and strategies from the forefront of hedge fund innovation.",
   keywords: [
@@ -18,12 +22,51 @@ export const metadata: Metadata = {
     "quantitative finance",
     "Run Alpha",
     "financial markets",
-    "alpha generation",
     "asset management",
     "AI in finance",
     "economic trends",
     "portfolio management",
   ],
+  authors: [{ name: "Run Alpha" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://blog.runalpha.com",
+    siteName: "Run Alpha Blog",
+    title: "Blog | Run Alpha",
+    description:
+      "Insights and strategies from the forefront of hedge fund innovation.",
+    images: [
+      {
+        url: "/og-image.jpg", // Place in public folder
+        width: 1200,
+        height: 630,
+        alt: "Run Alpha Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Run Alpha",
+    description:
+      "Insights and strategies from the forefront of hedge fund innovation.",
+    images: ["/twitter-image.jpg"],
+    creator: "@RunAlpha", // Update with your Twitter handle
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://blog.runalpha.com",
+  },
 };
 
 export default function RootLayout({
