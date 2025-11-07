@@ -14,6 +14,7 @@ export async function GET() {
         <atom:link href="https://blog.runalpha.com/feed.xml" rel="self" type="application/rss+xml"/>
         ${posts
           .map(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (post: any) => `
           <item>
             <title>${post.title}</title>

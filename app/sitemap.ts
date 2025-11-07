@@ -19,7 +19,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Filter only published articles and generate sitemap entries
   const blogPosts: MetadataRoute.Sitemap = articles
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .filter((article: any) => article.published)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .map((article: any) => ({
       url: `${baseUrl}/${article.slug}`,
       lastModified: new Date(article.date),
