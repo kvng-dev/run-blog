@@ -437,7 +437,6 @@ Currencies behave like ocean tides - they are always moving, sometimes calm, som
 Even small shifts matter. A 5% swing in exchange rates can erase half of your expected investment gains, turning a good investment into a disappointing one. That's why understanding FX is not optional — it's central to wealth management.
 </p>
 
-<img src="/silent/tech-daily-ztYmIQecyH4-unsplash.jpg" class="w-full h-full mb-6" />
 
 <h3 class="text-xl font-semibold mb-6">
 When FX Fluctuations Weather Damages Wealth
@@ -567,7 +566,7 @@ Run Alpha's Approach to FX Fluctuations
       "swaps",
     ],
     image:
-      "/hedging/determined-female-ceo-analyzes-financial-reports-develops-growth-strategy.jpg",
+      "/hedging/african-american-businesswoman-searching-commercial-office-spaces (1) resized.jpg",
     slug: "hedging-strategies-fx-fluctuations",
     featured: false,
     published: true,
@@ -1485,7 +1484,7 @@ Nigerian Eurobonds offer an interesting middle ground: dollar-denominated securi
 The key involves proper portfolio construction. Rather than concentrating in single issuers or maturity dates, sophisticated investors build laddered portfolios across multiple Eurobond issues, balancing yield optimization with investment risk management. This approach provides both currency protection and regular cash flow for liquidity needs.
 </p>
 
-<img src="/How Nigerian/smiling-african-american-woman-showing-model-building.jpg" class="mb-4"/>
+<img src="/How Nigerian/privacy-security-data-protection-shield-graphic-concept (1).jpg" class="mb-4"/>
 
 <h3 class="text-xl font-semibold mb-6">Advanced Liquidity Management for Currency Volatility</h3>
 <h4 class="text-lg font-semibold mb-4">Optimizing Cash Flow Across Multiple Currencies</h4>

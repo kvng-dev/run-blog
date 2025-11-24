@@ -53,10 +53,11 @@ export function BlogFooter() {
                   </div>
                 </Link>
                 <p className="text-gray-300 leading-relaxed">
-                  We&apos;re more than wealth managers - we&apos;re partners in
-                  preserving heritage, navigating today&apos;s market, growing
-                  across borders, and building legacies that last for
-                  genrations.
+                  Run Alpha investment policy focuses on delivering sustainable,
+                  risk-adjusted returns through data-driven strategies and
+                  disciplined portfolio management. We are committed to
+                  delivering financial advisory and investment management
+                  services with the highest level of service and transparency.
                 </p>
               </div>
 
