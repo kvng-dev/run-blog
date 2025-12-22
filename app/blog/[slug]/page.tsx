@@ -39,7 +39,7 @@ export async function generateMetadata({
       publishedTime: post.date,
       modifiedTime: post.date,
       authors: [post.author || "Run Alpha"],
-      url: `https://blog.runalpha.com/${slug}`,
+      url: `https://blog.runalpha.com/blog/${slug}`,
       images: [
         {
           url: post.image || "/og-image.jpg",

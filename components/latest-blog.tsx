@@ -11,7 +11,7 @@ export function LatestBlog() {
 
   const router = useRouter();
   const addSlugToParams = (slug: string) => {
-    router.push(`/${slug}`);
+    router.push(`/blog/${slug}`);
   };
   return (
     <section className="py-16 px-4 sm:px-6 md:px-16 2xl:px-32 w-full ">

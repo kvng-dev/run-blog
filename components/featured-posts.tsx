@@ -12,7 +12,7 @@ export function FeaturedPosts() {
   const router = useRouter();
 
   const addSlugToParams = (slug: string) => {
-    router.push(`/${slug}`);
+    router.push(`/blog/${slug}`);
   };
 
   return (
@@ -58,7 +58,7 @@ export function FeaturedPosts() {
             </div>
             <Button
               variant="ghost"
-              className="w-full justify-between hover:bg-blue-700 hover:text-primary-foreground transition-colors mt-6 cursor-pointer"
+              className="w-full justify-between hover:bg-[#01386e] hover:text-primary-foreground transition-colors mt-6 cursor-pointer"
               onClick={() => addSlugToParams(art.slug)}
             >
               Read More

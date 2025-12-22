@@ -9,7 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "https://blog.runalpha.com/sitemap.xml",
-    host: "https://blog.runalpha.com",
+    sitemap: "https://blog.runalpha.com/sitemap.xml"
   };
 }

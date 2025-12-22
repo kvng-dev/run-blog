@@ -1,9 +1,7 @@
 "use client";
 import {
-  Twitter,
   Linkedin,
   Mail,
-  Rss,
   MapPin,
   Globe,
   Shield,

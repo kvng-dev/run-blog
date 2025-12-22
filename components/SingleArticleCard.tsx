@@ -40,7 +40,7 @@ const SingleArticleCard = ({ article }: Props) => {
   );
 
   const addSlugToParams = (slug: string) => {
-    router.push(`/${slug}`);
+    router.push(`/blog/${slug}`);
   };
 
   const handleShare = () => {
@@ -200,7 +200,7 @@ const SingleArticleCard = ({ article }: Props) => {
             Related Articles
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {relatedArticle.map((article) => (
+            {relatedArticle.slice(0, 3).map((article) => (
               <div
                 onClick={() => addSlugToParams(article.slug)}
                 className="cursor-pointer"

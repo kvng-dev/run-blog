@@ -18,10 +18,10 @@ export async function GET() {
             (post: any) => `
           <item>
             <title>${post.title}</title>
-            <link>https://blog.runalpha.com/${post.slug}</link>
+            <link>https://blog.runalpha.com/blog/${post.slug}</link>
             <description>${post.excerpt}</description>
             <pubDate>${new Date(post.publishedAt).toUTCString()}</pubDate>
-            <guid>https://blog.runalpha.com/${post.slug}</guid>
+            <guid>https://blog.runalpha.com/blog/${post.slug}</guid>
           </item>
         `
           )

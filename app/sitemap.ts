@@ -17,15 +17,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all published articles
   const articles = getPublishedArticles();
 
-  // Filter only published articles and generate sitemap entries
+  // Generate sitemap entries for published articles
   const blogPosts: MetadataRoute.Sitemap = articles
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .filter((article: any) => article.published)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .map((article: any) => ({
-      url: `${baseUrl}/${article.slug}`,
+    .filter((article) => article.slug && article.slug.trim() !== "")
+    .map((article) => ({
+      url: `${baseUrl}/blog/${article.slug}`,
       lastModified: new Date(article.date),
-      changeFrequency: "weekly",
+      changeFrequency: "weekly" as const,
       priority: article.featured ? 0.9 : 0.8,
     }));
 
