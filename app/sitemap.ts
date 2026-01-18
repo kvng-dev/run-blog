@@ -1,38 +1,14 @@
+// app/sitemap.ts
 import { getPublishedArticles } from "@/data";
-import { NextResponse } from "next/server";
+import { MetadataRoute } from "next";
 
-function generateSitemapXML(
-  urls: Array<{
-    url: string;
-    lastModified: Date;
-    changeFrequency: string;
-    priority: number;
-  }>
-): string {
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    (item) => `  <url>
-    <loc>${item.url}</loc>
-    <lastmod>${item.lastModified.toISOString()}</lastmod>
-    <changefreq>${item.changeFrequency}</changefreq>
-    <priority>${item.priority}</priority>
-  </url>`
-  )
-  .join("\n")}
-</urlset>`;
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://blog.runalpha.co";
+  const currentDate = new Date();
 
-  return xml;
-}
-
-export async function GET() {
   try {
-    const baseUrl = "https://blog.runalpha.co";
-    const currentDate = new Date();
-
-    // Homepage
-    const urls = [
+    // Homepage and main routes
+    const routes: MetadataRoute.Sitemap = [
       {
         url: baseUrl,
         lastModified: currentDate,
@@ -41,65 +17,73 @@ export async function GET() {
       },
     ];
 
-    // Get articles
+    // Get all published articles
+    let articles: {
+      id: number;
+      title: string;
+      excerpt: string;
+      metaDescription: string;
+      author: string;
+      date: string;
+      readTime: string;
+      category: string;
+      tags: string[];
+      image: string;
+      slug: string;
+      featured: boolean;
+      published: boolean;
+      content: string;
+      faqs?: { question: string; answer: string }[] | undefined;
+    }[] = [];
     try {
-      const articles = getPublishedArticles();
-
-      articles
-        .filter((article) => article?.slug?.trim())
-        .forEach((article) => {
-          let lastModified = currentDate;
-
-          if (article.date) {
-            try {
-              const parsedDate = new Date(article.date);
-              if (!isNaN(parsedDate.getTime())) {
-                lastModified = parsedDate;
-              }
-            } catch (e) {
-              console.error(`Invalid date for ${article.slug}`);
-            }
-          }
-
-          urls.push({
-            url: `${baseUrl}/blog/${article.slug}`,
-            lastModified,
-            changeFrequency: "monthly",
-            priority: article.featured ? 0.9 : 0.7,
-          });
-        });
+      articles = getPublishedArticles();
     } catch (error) {
-      console.error("Error loading articles:", error);
+      console.error("Error fetching articles:", error);
+      return routes;
     }
 
-    const sitemap = generateSitemapXML(urls);
+    // Filter out invalid articles
+    const validArticles = articles.filter(
+      (article) =>
+        article &&
+        article.slug &&
+        typeof article.slug === "string" &&
+        article.slug.trim() !== ""
+    );
 
-    return new NextResponse(sitemap, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/xml",
-        "Cache-Control": "public, max-age=3600, s-maxage=3600",
-      },
+    // Generate sitemap entries for published articles
+    const blogPosts: MetadataRoute.Sitemap = validArticles.map((article) => {
+      let lastModified = currentDate;
+
+      if (article.date) {
+        try {
+          const parsedDate = new Date(article.date);
+          if (!isNaN(parsedDate.getTime())) {
+            lastModified = parsedDate;
+          }
+        } catch (e) {
+          console.error(`Invalid date for article ${article.slug}:`, e);
+        }
+      }
+
+      return {
+        url: `${baseUrl}/blog/${article.slug}`,
+        lastModified,
+        changeFrequency: "monthly" as const,
+        priority: article.featured ? 0.9 : 0.7,
+      };
     });
+
+    return [...routes, ...blogPosts];
   } catch (error) {
-    console.error("Sitemap generation failed:", error);
-
-    // Return minimal sitemap on error
-    const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://blog.runalpha.co</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-</urlset>`;
-
-    return new NextResponse(fallbackSitemap, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/xml",
+    console.error("Sitemap generation error:", error);
+    return [
+      {
+        url: baseUrl,
+        lastModified: currentDate,
+        changeFrequency: "daily",
+        priority: 1.0,
       },
-    });
+    ];
   }
 }
