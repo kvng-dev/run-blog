@@ -21,16 +21,16 @@ export async function GET() {
      xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Run Alpha Blog</title>
-    <link>https://blog.runalpha.com</link>
+    <link>https://blog.runalpha.co</link>
     <description>Expert insights on hedge funds, investment strategies, and quantitative finance.</description>
     <language>en-us</language>
     <lastBuildDate>${buildDate}</lastBuildDate>
-    <atom:link href="https://blog.runalpha.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://blog.runalpha.co/feed.xml" rel="self" type="application/rss+xml"/>
     <copyright>Copyright ${new Date().getFullYear()} Run Alpha</copyright>
-    <managingEditor>contact@runalpha.com (Run Alpha)</managingEditor>
-    <webMaster>contact@runalpha.com (Run Alpha)</webMaster>
+    <managingEditor>contact@runalpha.co (Run Alpha)</managingEditor>
+    <webMaster>contact@runalpha.co (Run Alpha)</webMaster>
     <image>
-      <url>https://blog.runalpha.com/logo.png</url>
+      <url>https://blog.runalpha.co/logo.png</url>
       <title>Run Alpha Blog</title>
       <link>https://blog.runalpha.com</link>
     </image>
@@ -39,10 +39,8 @@ export async function GET() {
         (post) => `
     <item>
       <title>${escapeXml(post.title)}</title>
-      <link>https://blog.runalpha.com/blog/${post.slug}</link>
-      <guid isPermaLink="true">https://blog.runalpha.com/blog/${
-        post.slug
-      }</guid>
+      <link>https://blog.runalpha.co/blog/${post.slug}</link>
+      <guid isPermaLink="true">https://blog.runalpha.co/blog/${post.slug}</guid>
       <description>${escapeXml(post.excerpt || "")}</description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <dc:creator>${escapeXml(post.author || "Run Alpha")}</dc:creator>

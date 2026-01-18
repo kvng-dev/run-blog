@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Insights and strategies from the forefront of hedge fund innovation.",
   alternates: {
-    canonical: "https://blog.runalpha.com",
+    canonical: "https://blog.runalpha.co",
   },
 };
 
@@ -20,14 +20,14 @@ const blogJsonLd = {
   name: "Run Alpha Blog",
   description:
     "Insights and strategies from the forefront of hedge fund innovation.",
-  url: "https://blog.runalpha.com",
+  url: "https://blog.runalpha.co",
   publisher: {
     "@type": "Organization",
     name: "Run Alpha",
     url: "https://runalpha.com",
     logo: {
       "@type": "ImageObject",
-      url: "https://blog.runalpha.com/logo.png",
+      url: "https://blog.runalpha.co/logo.png",
     },
   },
 };

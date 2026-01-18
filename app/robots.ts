@@ -1,3 +1,4 @@
+// app/robots.ts
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,9 +7,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/"],
+        disallow: ["/api/", "/admin/", "/_next/"],
       },
     ],
-    sitemap: "https://blog.runalpha.com/sitemap.xml"
+    sitemap: "https://blog.runalpha.co/sitemap.xml",
+    host: "https://blog.runalpha.co",
   };
 }

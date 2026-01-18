@@ -12,7 +12,7 @@ const geistSans = Fira_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://blog.runalpha.com"),
+  metadataBase: new URL("https://blog.runalpha.co"),
   title: {
     default: "Run Alpha Blog - Hedge Fund Insights & Investment Strategies",
     template: "%s | Run Alpha Blog",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "economic trends",
     "portfolio management",
   ],
-  authors: [{ name: "Run Alpha", url: "https://blog.runalpha.com" }],
+  authors: [{ name: "Run Alpha", url: "https://blog.runalpha.co" }],
   creator: "Run Alpha",
   publisher: "Run Alpha",
   formatDetection: {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://blog.runalpha.com",
+    url: "https://blog.runalpha.co",
     siteName: "Run Alpha Blog",
     title: "Run Alpha Blog - Hedge Fund Insights & Investment Strategies",
     description:
@@ -79,9 +79,9 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://blog.runalpha.com",
+    canonical: "https://blog.runalpha.co",
     types: {
-      "application/rss+xml": "https://blog.runalpha.com/feed.xml",
+      "application/rss+xml": "https://blog.runalpha.co/feed.xml",
     },
   },
   verification: {
