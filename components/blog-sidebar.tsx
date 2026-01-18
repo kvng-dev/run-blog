@@ -1,278 +1,263 @@
 "use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
-  Facebook,
   Instagram,
   Linkedin,
   Mail,
-  Rss,
   Search,
   Twitter,
   TrendingUp,
   Clock,
   Tag,
-  Users,
+  Sparkles,
+  ArrowRight,
+  Send,
+  Globe,
+  ShieldCheck,
+  Zap,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import React, { KeyboardEvent, useState } from "react";
 
 const sidebarItems = [
   {
     name: "Investment Management",
-    href: "/investment-management",
+    href: "#",
     count: 12,
     icon: TrendingUp,
+    color: "text-emerald-500",
   },
   {
     name: "FX Risk Management",
-    href: "/fx-risk-management",
+    href: "#",
     count: 8,
+    icon: Globe,
+    color: "text-blue-500",
   },
   {
     name: "Hedging Strategies",
-    href: "/hedging-strategies",
+    href: "#",
     count: 6,
+    icon: ShieldCheck,
+    color: "text-indigo-500",
   },
   {
     name: "Portfolio Protection",
-    href: "/portfolio-protection",
+    href: "#",
     count: 9,
+    icon: Zap,
+    color: "text-amber-500",
   },
   {
     name: "Market Analysis",
-    href: "/market-analysis",
+    href: "#",
     count: 15,
-  },
-  {
-    name: "Wealth Management",
-    href: "/wealth-management",
-    count: 7,
+    icon: Search,
+    color: "text-rose-500",
   },
 ];
 
 const popularPosts = [
   {
     title: "The Silent Wealth Killer: How FX Fluctuations Erode Your Portfolio",
-    href: "/fx-fluctuations-portfolio-risks",
-    readTime: "10 min read",
+    href: "#",
+    readTime: "10 min",
     date: "2024-03-12",
   },
   {
     title: "Hedging Strategies for Nigerian Investors",
-    href: "/hedging-strategies-fx-fluctuations",
-    readTime: "12 min read",
+    href: "#",
+    readTime: "12 min",
     date: "2024-03-10",
-  },
-  {
-    title: "Investment Management for the Digital Age",
-    href: "/investment-management-digital-age",
-    readTime: "8 min read",
-    date: "2024-03-15",
   },
 ];
 
 const BlogSidebar = () => {
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleNewsletterSubmit = () => {
-    if (email.trim()) {
-      console.log("Newsletter signup:", email);
-      setEmail("");
-      // Handle newsletter subscription
-    }
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
   };
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      console.log("Search query:", searchQuery);
-      // Handle search functionality
-    }
-  };
-
-  const handleKeyDown = (
-    e: KeyboardEvent<HTMLInputElement>,
-    action: () => void
-  ) => {
-    if (e.key === "Enter") {
-      action();
-    }
+  const itemVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0 },
   };
 
   return (
-    <aside className="hidden lg:block lg:w-64 xl:w-96 border-l border-gray-100">
-      <div className="sticky top-20 p-6 space-y-8 max-h-[calc(100vh-5rem)] overflow-y-auto">
-        {/* Search Section */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Search className="h-4 w-4 text-gray-600" />
-            <h3 className="font-semibold text-sm text-gray-900">
-              Search Articles
-            </h3>
-          </div>
-          <div className="relative">
+    <aside className="hidden lg:block lg:w-80 xl:w-[400px] relative">
+      <div className="sticky top-24 p-1 space-y-8 h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar">
+        {/* Modern Search Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative group"
+        >
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-10 group-focus-within:opacity-25 transition duration-1000"></div>
+          <div className="relative flex items-center bg-white border border-slate-100 rounded-2xl p-1 shadow-sm">
+            <Search className="ml-3 h-4 w-4 text-slate-400" />
             <Input
               type="text"
-              placeholder="Search for insights..."
+              placeholder="AI-powered search..."
+              className="border-none focus-visible:ring-0 text-sm bg-transparent"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={(e) => handleKeyDown(e, handleSearch)}
-              className="w-full pr-12 text-sm"
             />
-            <button
-              onClick={handleSearch}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-1.5 rounded-md transition-colors"
-            >
-              <Search className="h-4 w-4" />
-            </button>
+            <kbd className="hidden xl:inline-flex h-6 select-none items-center gap-1 rounded border border-slate-200 bg-slate-50 px-1.5 font-mono text-[10px] font-medium text-slate-500 mr-2">
+              ⌘K
+            </kbd>
           </div>
-        </div>
+        </motion.div>
 
         {/* Categories Section */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <Tag className="h-4 w-4 text-gray-600" />
-            <h3 className="font-semibold text-sm text-gray-900">Categories</h3>
-          </div>
-          <div className="space-y-1">
-            {sidebarItems.map((item, index) => (
-              <Link
-                key={index}
-                href={"#"}
-                className="group flex items-center justify-between py-2.5 px-3 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all duration-200"
-              >
-                <div className="flex items-center gap-2">
-                  {item.icon && <item.icon className="h-4 w-4" />}
-                  <span className="group-hover:translate-x-0.5 transition-transform duration-200">
-                    {item.name}
-                  </span>
-                </div>
-                <span className="text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded-full group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors">
-                  {item.count}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Popular Posts Section */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-gray-600" />
-            <h3 className="font-semibold text-sm text-gray-900">
-              Popular Articles
-            </h3>
-          </div>
-          <div className="space-y-4">
-            {popularPosts.map((post, index) => (
-              <Link
-                key={index}
-                href={post.href}
-                className="group block p-3 border border-gray-100 rounded-lg hover:border-blue-200 hover:shadow-sm transition-all duration-200"
-              >
-                <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 line-clamp-2 mb-2 transition-colors">
-                  {post.title}
-                </h4>
-                <div className="flex items-center gap-3 text-xs text-gray-500">
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    <span>{post.readTime}</span>
-                  </div>
-                  <span>•</span>
-                  <span>{new Date(post.date).toLocaleDateString()}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Newsletter Subscription */}
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-100">
-          <div className="space-y-3">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="space-y-4"
+        >
+          <div className="flex items-center justify-between px-2">
             <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-blue-600" />
-              <h3 className="font-semibold text-sm text-gray-900">
-                Stay Updated
+              <div className="p-2 bg-blue-50 rounded-lg">
+                <Tag className="h-4 w-4 text-blue-600" />
+              </div>
+              <h3 className="font-bold text-sm text-slate-900 tracking-tight">
+                Intelligence Categories
               </h3>
             </div>
-            <p className="text-xs text-gray-600 leading-relaxed">
-              Get the latest insights on investment strategies, FX risk
-              management, and market analysis delivered to your inbox.
+          </div>
+          <div className="grid gap-2">
+            {sidebarItems.map((item, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Link
+                  href={item.href}
+                  className="group flex items-center justify-between p-3 rounded-xl hover:bg-white hover:shadow-md hover:shadow-slate-200/50 border border-transparent hover:border-slate-100 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3">
+                    <item.icon
+                      className={`h-4 w-4 ${item.color} group-hover:scale-110 transition-transform`}
+                    />
+                    <span className="text-sm font-medium text-slate-600 group-hover:text-slate-900">
+                      {item.name}
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-bold bg-slate-100 text-slate-500 w-6 h-6 flex items-center justify-center rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    {item.count}
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Trending Section */}
+        <div className="space-y-4">
+          <div className="flex items-center gap-2 px-2">
+            <div className="p-2 bg-rose-50 rounded-lg">
+              <Sparkles className="h-4 w-4 text-rose-600" />
+            </div>
+            <h3 className="font-bold text-sm text-slate-900 tracking-tight">
+              Trending Now
+            </h3>
+          </div>
+          <div className="space-y-3">
+            {popularPosts.map((post, index) => (
+              <Link key={index} href={post.href} className="block group">
+                <div className="relative p-4 rounded-2xl bg-slate-50 border border-slate-100 group-hover:bg-white group-hover:border-blue-100 group-hover:shadow-lg group-hover:shadow-blue-500/5 transition-all duration-300">
+                  <h4 className="text-sm font-semibold text-slate-800 leading-snug mb-3 group-hover:text-blue-600 transition-colors">
+                    {post.title}
+                  </h4>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-3 w-3" /> {post.readTime}
+                      </span>
+                    </div>
+                    <ArrowRight className="h-3 w-3 text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Futuristic Newsletter */}
+        <motion.div
+          whileHover={{ y: -5 }}
+          className="relative overflow-hidden bg-slate-900 rounded-3xl p-6 text-white shadow-2xl shadow-blue-900/20"
+        >
+          <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
+          <div className="relative z-10 space-y-4">
+            <div className="flex items-center gap-2">
+              <Mail className="h-5 w-5 text-blue-400" />
+              <h3 className="font-bold text-base">The Weekly Edge</h3>
+            </div>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Join 10k+ professionals getting curated FX insights every Tuesday.
             </p>
             <div className="space-y-2">
               <Input
-                type="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => handleKeyDown(e, handleNewsletterSubmit)}
-                className="text-sm"
+                placeholder="Email address"
+                className="bg-white/10 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:ring-blue-500"
               />
-              <Button
-                onClick={handleNewsletterSubmit}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 transition-colors"
-              >
-                <Mail className="mr-2 h-4 w-4" />
-                Subscribe Now
+              <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all active:scale-95">
+                <Send className="mr-2 h-3 w-3" /> Subscribe
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Social Links */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <Users className="h-4 w-4 text-gray-600" />
-            <h3 className="font-semibold text-sm text-gray-900">Follow Us</h3>
+        {/* Social Ecosystem */}
+        <div className="pt-4 border-t border-slate-100">
+          <div className="flex justify-between items-center mb-4 px-2">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
+              Connect
+            </span>
+            <div className="h-[1px] flex-1 bg-slate-100 ml-4"></div>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2 text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 transition-all"
-            >
-              <Twitter className="h-3 w-3" />
-              <span className="text-xs">Twitter</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2 text-cyan-600 border-cyan-200 hover:bg-cyan-50 hover:border-blue-300 transition-all"
-            >
-              <Linkedin className="h-3 w-3" />
-              <span className="text-xs">LinkedIn</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2 text-blue-600 border-blue-200 hover:bg-blue-50 hover:border-blue-300 transition-all"
-            >
-              <Facebook className="h-3 w-3" />
-              <span className="text-xs">Facebook</span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2 text-orange-600 border-orange-200 hover:bg-orange-50 hover:border-orange-300 transition-all"
-            >
-              <Instagram className="h-3 w-3" />
-              <span className="text-xs">Instagram</span>
-            </Button>
+          <div className="flex gap-2">
+            {[
+              { icon: Twitter, color: "hover:bg-sky-500", text: "sky" },
+              { icon: Linkedin, color: "hover:bg-blue-700", text: "blue" },
+              { icon: Instagram, color: "hover:bg-pink-600", text: "pink" },
+            ].map((social, i) => (
+              <Button
+                key={i}
+                variant="outline"
+                size="icon"
+                className={`rounded-xl border-slate-100 hover:text-white ${social.color} transition-all duration-300`}
+              >
+                <social.icon className="h-4 w-4" />
+              </Button>
+            ))}
           </div>
         </div>
 
-        {/* Quick Stats */}
-        <div className="bg-gray-50 p-4 rounded-xl">
-          <div className="grid grid-cols-2 gap-4 text-center">
-            <div>
-              <div className="text-xl font-bold text-gray-900">50+</div>
-              <div className="text-xs text-gray-500">Articles</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-gray-900">10K+</div>
-              <div className="text-xs text-gray-500">Readers</div>
-            </div>
+        {/* Dynamic Trust Badge */}
+        <div className="flex items-center gap-4 px-4 py-3 bg-white border border-slate-100 rounded-2xl">
+          <div className="flex -space-x-2">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="w-6 h-6 rounded-full border-2 border-white bg-slate-200"
+              ></div>
+            ))}
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[10px] font-black text-slate-900 italic">
+              500+ ARTICLES
+            </span>
+            <span className="text-[10px] text-slate-400 font-medium">
+              Curated by global experts
+            </span>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { getArticleBySlug } from "@/data";
-
 import SingleArticleCard from "@/components/SingleArticleCard";
 import { Metadata } from "next";
+import Link from "next/link";
 
 interface PageProps {
   params: Promise<{
@@ -13,7 +13,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getArticleBySlug(slug);
+  const post = getArticleBySlug(slug);
 
   if (!post) {
     return {
@@ -21,6 +21,9 @@ export async function generateMetadata({
       description: "This article could not be found.",
     };
   }
+
+  const canonicalUrl = `https://blog.runalpha.com/blog/${slug}`;
+  const imageUrl = post.image || "https://blog.runalpha.com/og-image.jpg";
 
   return {
     title: post.title,
@@ -30,8 +33,11 @@ export async function generateMetadata({
       "hedge funds",
       "investment strategies",
       "Run Alpha",
+      post.category,
     ].filter(Boolean),
     authors: [{ name: post.author || "Run Alpha" }],
+    creator: post.author || "Run Alpha",
+    publisher: "Run Alpha",
     openGraph: {
       title: post.title,
       description: post.excerpt || post.metaDescription,
@@ -39,27 +45,43 @@ export async function generateMetadata({
       publishedTime: post.date,
       modifiedTime: post.date,
       authors: [post.author || "Run Alpha"],
-      url: `https://blog.runalpha.com/blog/${slug}`,
+      url: canonicalUrl,
       images: [
         {
-          url: post.image || "/og-image.jpg",
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: post.title,
+          type: "image/jpeg",
         },
       ],
       siteName: "Run Alpha Blog",
+      locale: "en_US",
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt || post.metaDescription,
-      images: [post.image || "/twitter-image.jpg"],
+      images: [imageUrl],
       creator: "@RunAlpha",
+      site: "@RunAlpha",
     },
     alternates: {
-      canonical: `https://blog.runalpha.com/${slug}`,
+      canonical: canonicalUrl,
     },
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    category: post.category,
   };
 }
 
@@ -69,23 +91,64 @@ const SingleArticle = async ({ params }: PageProps) => {
 
   if (!article) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center px-4">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Article Not Found
           </h1>
-          <p className="text-gray-600 mb-8">
-            The article you&apos;re looking for doesn&apos;t exist.
+          <p className="text-gray-600 mb-8 text-lg">
+            The article you&apos;re looking for doesn&apos;t exist or has been
+            moved.
           </p>
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-            Return to Blog
-          </button>
+          <Link
+            href="/"
+            className="inline-block bg-[#01386e] text-white px-8 py-3 rounded-lg hover:bg-[#024a8f] transition-colors font-medium"
+          >
+            Return to Blog Home
+          </Link>
         </div>
       </div>
     );
   }
 
-  return <SingleArticleCard article={article} />;
+  return (
+    <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: article.title,
+            description: article.excerpt || article.metaDescription,
+            image: article.image || "https://blog.runalpha.com/og-image.jpg",
+            author: {
+              "@type": "Person",
+              name: article.author || "Run Alpha",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Run Alpha",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://blog.runalpha.com/logo.png",
+              },
+            },
+            datePublished: article.date,
+            dateModified: article.date,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `https://blog.runalpha.com/blog/${slug}`,
+            },
+            keywords: article.tags?.join(", ") || "",
+            articleSection: article.category,
+          }),
+        }}
+      />
+      <SingleArticleCard article={article} />
+    </>
+  );
 };
 
 export default SingleArticle;

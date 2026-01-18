@@ -1,402 +1,293 @@
 "use client";
-import React, { useState, useMemo } from "react";
+
+import { useState, useMemo } from "react";
 import {
   Search,
   Calendar,
   Clock,
-  User,
   Grid,
   List,
-  ChevronDown,
   ArrowRight,
+  FilterX,
 } from "lucide-react";
 import Link from "next/link";
 import { getPublishedArticles } from "@/data";
-
-// Mock data - replace with your actual blog data
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const AllArticlesPage = () => {
   const articles = getPublishedArticles();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
-  const [viewMode, setViewMode] = useState("grid");
-  const [showFilters, setShowFilters] = useState(false);
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [currentPage, setCurrentPage] = useState(1);
 
   const articlesPerPage = 6;
 
-  // Get unique categories
   const categories = useMemo(() => {
-    const cats = [
-      "All",
-      ...new Set(articles.map((article) => article.category)),
-    ];
-    return cats;
-  }, []);
+    return ["All", ...new Set(articles.map((article) => article.category))];
+  }, [articles]);
 
-  // Filter and sort articles
   const filteredArticles = useMemo(() => {
-    let filtered = articles;
+    let filtered = [...articles];
 
-    // Search filter
     if (searchQuery) {
+      const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
-        (article) =>
-          article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          article.tags.some((tag) =>
-            tag.toLowerCase().includes(searchQuery.toLowerCase())
-          )
+        (art) =>
+          art.title.toLowerCase().includes(query) ||
+          art.excerpt.toLowerCase().includes(query) ||
+          art.tags?.some((tag) => tag.toLowerCase().includes(query))
       );
     }
 
-    // Category filter
     if (selectedCategory !== "All") {
-      filtered = filtered.filter(
-        (article) => article.category === selectedCategory
-      );
+      filtered = filtered.filter((art) => art.category === selectedCategory);
     }
 
-    // Sort
-    switch (sortBy) {
-      case "newest":
-        filtered.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
-        break;
-      case "oldest":
-        filtered.sort(
-          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-        );
-        break;
-      case "popular":
-        filtered.sort((a, b) =>
-          b.featured === a.featured ? 0 : b.featured ? 1 : -1
-        );
-        break;
-      default:
-        break;
-    }
+    filtered.sort((a, b) => {
+      if (sortBy === "newest")
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (sortBy === "oldest")
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      if (sortBy === "popular")
+        return b.featured === a.featured ? 0 : b.featured ? 1 : -1;
+      return 0;
+    });
 
     return filtered;
-  }, [searchQuery, selectedCategory, sortBy]);
+  }, [searchQuery, selectedCategory, sortBy, articles]);
 
-  // Pagination
-  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
-  const startIndex = (currentPage - 1) * articlesPerPage;
   const paginatedArticles = filteredArticles.slice(
-    startIndex,
-    startIndex + articlesPerPage
+    (currentPage - 1) * articlesPerPage,
+    currentPage * articlesPerPage
   );
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
 
   return (
-    <div className="min-h-screen bg-gray-50 mt-16">
-      {/* Header */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              All Articles
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Explore our comprehensive collection of investment insights,
-              market analysis, and wealth management strategies.
-            </p>
-          </div>
+    <div className="min-h-screen bg-[#F8FAFC] pb-20">
+      {/* Editorial Header */}
+      <header className="relative pt-32 pb-16 px-6 overflow-hidden bg-white">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-5 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,#01386e,transparent)]" />
         </div>
-      </div>
 
-      {/* Search and Filters */}
-      <div className="bg-white border-b sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-            {/* Search */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6">
+              Insights & <span className="text-primary italic">Strategy</span>
+            </h1>
+            <p className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
+              Deep dives into market dynamics, wealth preservation, and the
+              future of global investment.
+            </p>
+          </motion.div>
+        </div>
+      </header>
+
+      {/* Persistence Bar: Search & Controls */}
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-y border-slate-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+            {/* Search Input */}
+            <div className="relative w-full md:max-w-sm group">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-primary transition-colors" />
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder="Search the archive..."
+                className="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-full focus:ring-2 focus:ring-primary/20 transition-all text-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#01386e] focus:border-transparent"
               />
             </div>
 
-            {/* Controls */}
-            <div className="flex items-center gap-4">
-              {/* Category Filter */}
-              <div className="relative">
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-[#01386e] focus:border-transparent"
-                >
-                  {categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
-              </div>
+            {/* Filters */}
+            <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+              <select
+                className="bg-transparent border-none text-sm font-semibold text-slate-600 focus:ring-0 cursor-pointer"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                {categories.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
 
-              {/* Sort */}
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-[#01386e] focus:border-transparent"
-                >
-                  <option value="newest">Newest First</option>
-                  <option value="oldest">Oldest First</option>
-                  <option value="popular">Most Popular</option>
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
-              </div>
+              <div className="h-4 w-[1px] bg-slate-200 hidden md:block" />
 
-              {/* View Mode */}
-              <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+              <div className="flex bg-slate-100 p-1 rounded-full">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-2.5 ${
+                  className={`p-1.5 rounded-full transition-all ${
                     viewMode === "grid"
-                      ? "bg-[#01386e] text-white"
-                      : "bg-white text-gray-600 hover:bg-gray-50"
-                  } transition-colors`}
+                      ? "bg-white shadow-sm text-primary"
+                      : "text-slate-400"
+                  }`}
                 >
-                  <Grid className="h-4 w-4" />
+                  <Grid size={16} />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`p-2.5 ${
+                  className={`p-1.5 rounded-full transition-all ${
                     viewMode === "list"
-                      ? "bg-[#01386e] text-white"
-                      : "bg-white text-gray-600 hover:bg-gray-50"
-                  } transition-colors`}
+                      ? "bg-white shadow-sm text-primary"
+                      : "text-slate-400"
+                  }`}
                 >
-                  <List className="h-4 w-4" />
+                  <List size={16} />
                 </button>
               </div>
             </div>
           </div>
-
-          {/* Results Count */}
-          <div className="mt-4 text-sm text-gray-600">
-            Showing {filteredArticles.length} articles
-            {selectedCategory !== "All" && ` in "${selectedCategory}"`}
-            {searchQuery && ` matching "${searchQuery}"`}
-          </div>
         </div>
       </div>
 
-      {/* Articles */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {paginatedArticles.length === 0 ? (
-          <div className="text-center py-16">
-            <div className="text-6xl mb-4">📄</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              No articles found
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Try adjusting your search or filter criteria
-            </p>
-            <button
-              onClick={() => {
-                setSearchQuery("");
-                setSelectedCategory("All");
-              }}
-              className="bg-[#01386e] text-white px-6 py-2 rounded-lg hover:bg-[#01386e] transition-colors"
+      {/* Main Content Area */}
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        <AnimatePresence mode="wait">
+          {paginatedArticles.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="flex flex-col items-center justify-center py-20 text-center"
             >
-              Clear Filters
-            </button>
-          </div>
-        ) : (
-          <>
-            {viewMode === "grid" ? (
-              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-                {paginatedArticles.map((article) => (
-                  <article
+              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6">
+                <FilterX className="text-slate-300 w-10 h-10" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                No matches found
+              </h3>
+              <p className="text-slate-500 mb-8">
+                Refine your search or clear filters to see more.
+              </p>
+              <Button
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedCategory("All");
+                }}
+              >
+                Reset All Filters
+              </Button>
+            </motion.div>
+          ) : (
+            <LayoutGroup>
+              <motion.div
+                layout
+                className={
+                  viewMode === "grid"
+                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    : "flex flex-col gap-6"
+                }
+              >
+                {paginatedArticles.map((article, idx) => (
+                  <motion.article
+                    layout
                     key={article.id}
-                    className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    className={`group bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ${
+                      viewMode === "list" ? "md:flex md:h-64" : ""
+                    }`}
                   >
-                    <Link href={`/blog/${article.slug}`}>
-                      <div className="relative overflow-hidden">
+                    <Link href={`/blog/${article.slug}`} className="contents">
+                      {/* Image container */}
+                      <div
+                        className={`${
+                          viewMode === "list" ? "md:w-1/3" : "w-full h-56"
+                        } overflow-hidden relative`}
+                      >
                         <img
                           src={article.image}
                           alt={article.title}
-                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        {article.featured && (
-                          <div className="absolute top-4 left-4">
-                            <span className="bg-[#01386e] text-white px-3 py-1 rounded-full text-sm font-semibold">
-                              Featured
-                            </span>
-                          </div>
-                        )}
-                        <div className="absolute top-4 right-4">
-                          <span className="bg-white/90 backdrop-blur-sm text-[#01386e] px-3 py-1 rounded-full text-xs font-semibold">
-                            {article.category}
-                          </span>
-                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                        <Badge className="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-slate-900 hover:bg-white border-none shadow-sm">
+                          {article.category}
+                        </Badge>
                       </div>
 
-                      <div className="p-6">
-                        <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                          <div className="flex items-center gap-1">
-                            <Calendar size={14} />
-                            <span>
+                      {/* Content container */}
+                      <div
+                        className={`p-6 flex flex-col justify-between ${
+                          viewMode === "list" ? "md:w-2/3" : ""
+                        }`}
+                      >
+                        <div>
+                          <div className="flex items-center gap-4 text-[11px] font-bold uppercase tracking-tighter text-slate-400 mb-3">
+                            <span className="flex items-center gap-1.5">
+                              <Calendar size={12} className="text-primary" />
                               {new Date(article.date).toLocaleDateString()}
                             </span>
+                            <span className="flex items-center gap-1.5">
+                              <Clock size={12} className="text-primary" />
+                              {article.readTime}
+                            </span>
                           </div>
-                          <div className="flex items-center gap-1">
-                            <Clock size={14} />
-                            <span>{article.readTime}</span>
-                          </div>
+                          <h2 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-tight mb-3 line-clamp-2">
+                            {article.title}
+                          </h2>
+                          <p className="text-slate-500 text-sm font-light line-clamp-2 leading-relaxed mb-4">
+                            {article.excerpt}
+                          </p>
                         </div>
 
-                        <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#01386e] transition-colors">
-                          {article.title}
-                        </h2>
-
-                        <p className="text-gray-600 mb-4 line-clamp-3">
-                          {article.excerpt}
-                        </p>
-
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-50">
                           <div className="flex items-center gap-2">
-                            <User size={16} className="text-gray-400" />
-                            <span className="text-sm text-gray-600">
+                            <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-primary font-bold text-xs">
+                              {article.author.charAt(0)}
+                            </div>
+                            <span className="text-xs font-semibold text-slate-600">
                               {article.author}
                             </span>
                           </div>
                           <ArrowRight
-                            size={16}
-                            className="text-[#01386e] group-hover:translate-x-1 transition-transform"
+                            size={18}
+                            className="text-slate-300 group-hover:text-primary group-hover:translate-x-1 transition-all"
                           />
                         </div>
                       </div>
                     </Link>
-                  </article>
+                  </motion.article>
                 ))}
-              </div>
-            ) : (
-              <div className="space-y-6">
-                {paginatedArticles.map((article) => (
-                  <article
-                    key={article.id}
-                    className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
-                  >
-                    <Link href={`/blog/${article.slug}`}>
-                      <div className="md:flex">
-                        <div className="md:w-1/3 relative">
-                          <img
-                            src={article.image}
-                            alt={article.title}
-                            className="w-full h-64 md:h-full object-cover"
-                          />
-                          {article.featured && (
-                            <div className="absolute top-4 left-4">
-                              <span className="bg-[#01386e] text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                Featured
-                              </span>
-                            </div>
-                          )}
-                        </div>
+              </motion.div>
+            </LayoutGroup>
+          )}
+        </AnimatePresence>
 
-                        <div className="md:w-2/3 p-6 flex flex-col justify-between">
-                          <div>
-                            <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                              <span className="bg-blue-100 text-[#01386e] px-3 py-1 rounded-full text-xs font-semibold">
-                                {article.category}
-                              </span>
-                              <div className="flex items-center gap-1">
-                                <Calendar size={14} />
-                                <span>
-                                  {new Date(article.date).toLocaleDateString()}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock size={14} />
-                                <span>{article.readTime}</span>
-                              </div>
-                            </div>
-
-                            <h2 className="text-2xl font-bold text-gray-900 mb-3 hover:text-[#01386e] transition-colors">
-                              {article.title}
-                            </h2>
-
-                            <p className="text-gray-600 mb-4">
-                              {article.excerpt}
-                            </p>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <User size={16} className="text-gray-400" />
-                              <span className="text-sm text-gray-600">
-                                {article.author}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2 text-[#01386e] font-medium">
-                              <span>Read More</span>
-                              <ArrowRight size={16} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </article>
-                ))}
-              </div>
-            )}
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="mt-12 flex justify-center">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 text-sm border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-                  >
-                    Previous
-                  </button>
-
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                    (page) => (
-                      <button
-                        key={page}
-                        onClick={() => handlePageChange(page)}
-                        className={`px-4 py-2 text-sm rounded-lg transition-colors ${
-                          currentPage === page
-                            ? "bg-[#01386e] text-white"
-                            : "border border-gray-300 hover:bg-gray-50"
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    )
-                  )}
-
-                  <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="px-4 py-2 text-sm border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
-            )}
-          </>
+        {/* Modern Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-20 flex justify-center gap-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => {
+                  setCurrentPage(page);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className={`w-10 h-10 rounded-full text-sm font-bold transition-all ${
+                  currentPage === page
+                    ? "bg-slate-900 text-white scale-110 shadow-lg"
+                    : "bg-white text-slate-400 hover:bg-slate-50 border border-slate-100"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
         )}
-      </div>
+      </main>
     </div>
   );
 };

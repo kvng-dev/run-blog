@@ -1,5 +1,14 @@
 "use client";
-import { Calendar, Clock, User, ArrowLeft, Share2, Tag } from "lucide-react";
+import React, { useRef } from "react";
+import {
+  Calendar,
+  Clock,
+  User,
+  ArrowLeft,
+  Share2,
+  ChevronRight,
+  MessageCircle,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +16,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useRouter } from "next/navigation";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { getRelatedArticles } from "@/data";
+import Image from "next/image";
 
 interface Props {
   article:
@@ -33,7 +44,21 @@ interface Props {
 
 const SingleArticleCard = ({ article }: Props) => {
   const router = useRouter();
+  const containerRef = useRef(null);
   const currentSlug = article?.slug;
+
+  // Scroll Progress Logic
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // Parallax Effect for Hero
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
 
   const relatedArticle = getRelatedArticles().filter(
     (article) => article.slug !== currentSlug
@@ -47,12 +72,15 @@ const SingleArticleCard = ({ article }: Props) => {
     if (navigator.share) {
       navigator.share({
         title: article?.title,
+
         text: article?.excerpt,
+
         url: window.location.href,
       });
     } else {
       // Fallback - copy to clipboard
       navigator.clipboard.writeText(window.location.href);
+
       alert("Link copied to clipboard!");
     }
   };
@@ -61,175 +89,200 @@ const SingleArticleCard = ({ article }: Props) => {
     return null;
   }
 
+  if (!article) return null;
+
   return (
-    <article className="min-h-screen bg-white relative mt-8">
-      {/* Header Navigation */}
-      <div className="border-b border-gray-100 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div
+      ref={containerRef}
+      className="relative min-h-screen bg-[#fcfcf9] text-slate-900 selection:bg-blue-100"
+    >
+      {/* 2026 Reading Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1.5 bg-blue-600 origin-left z-[100]"
+        style={{ scaleX }}
+      />
+
+      {/* Floating Modern Navigation */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl">
+        <div className="bg-white/70 backdrop-blur-md border border-white/20 shadow-2xl rounded-full px-6 py-3 flex items-center justify-between">
           <button
-            className="hidden md:flex items-center gap-2 text-gray-600 bg-white hover:text-gray-900 transition-colors cursor-pointer absolute top-16 left-32 z-30 px-6 py-1.5 rounded-3xl"
             onClick={() => router.back()}
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <ArrowLeft size={18} />
-            <span className="font-mono text-xs">Back</span>
+            <ArrowLeft size={20} />
+          </button>
+          <div className="hidden sm:block text-sm font-medium truncate max-w-[200px]">
+            {article.title}
+          </div>
+          <button
+            onClick={handleShare}
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition-all active:scale-95"
+          >
+            <Share2 size={16} />
+            <span>Share</span>
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Hero Image */}
-      <div className="relative md:h-[700px] bg-gray-900 overflow-hidden">
-        <img
-          src={article.image}
-          alt={article.title}
-          className="w-full h-full object-cover opacity-80"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+      {/* Cinematic Hero Section */}
+      <header className="relative h-[80vh] md:h-screen w-full overflow-hidden flex items-end">
+        <motion.div style={{ y: y1, opacity }} className="absolute inset-0 z-0">
+          <Image
+            src={article.image}
+            alt={article.title}
+            fill
+            className="w-full h-full object-cover scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#fcfcf9] via-transparent to-black/20" />
+        </motion.div>
 
-        {/* Category Badge */}
-        <div className="absolute top-6 right-6">
-          <span className="bg-[#01386e] text-white px-4 py-2 rounded-full text-xs font-semibold">
-            {article.category}
-          </span>
+        <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-600 text-white text-xs font-bold uppercase tracking-widest mb-6">
+              {article.category}
+            </span>
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] mb-8 text-amber-600">
+              {article.title}
+            </h1>
+          </motion.div>
         </div>
-      </div>
+      </header>
 
-      {/* Article Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Article Header */}
-        <header className="py-8 border-b border-gray-100">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            {article.title}
-          </h1>
-
-          <p className="md:text-xl text-gray-600 mb-8 leading-relaxed italic">
-            {article.excerpt}
-          </p>
-
-          {/* Article Meta */}
-          <div className="flex flex-wrap items-center gap-6 text-gray-500 text-xs md:text-base">
-            <div className="flex items-center gap-2">
-              <User size={18} />
-              <span className="font-medium">{article.author}</span>
+      {/* Content Grid (Bento Style Meta) */}
+      <main className="max-w-4xl mx-auto px-6 -mt-10 relative z-20">
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100">
+          {/* Article Info Bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pb-12 border-b border-gray-100 mb-12">
+            <div className="space-y-1">
+              <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
+                Written By
+              </p>
+              <p className="font-semibold flex items-center gap-2">
+                <User size={14} /> {article.author}
+              </p>
             </div>
-
-            <div className="flex items-center gap-2">
-              <Calendar size={18} />
-              <time dateTime={article.date}>
-                {new Date(article.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </time>
+            <div className="space-y-1">
+              <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
+                Published
+              </p>
+              <p className="font-semibold flex items-center gap-2">
+                <Calendar size={14} />{" "}
+                {new Date(article.date).toLocaleDateString()}
+              </p>
             </div>
-
-            <div className="flex items-center gap-2">
-              <Clock size={18} />
-              <span>{article.readTime}</span>
+            <div className="space-y-1">
+              <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
+                Reading Time
+              </p>
+              <p className="font-semibold flex items-center gap-2">
+                <Clock size={14} /> {article.readTime}
+              </p>
             </div>
-
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-2 text-[#01386e] hover:text-[#01386e] transition-colors ml-auto"
-            >
-              <Share2 size={18} />
-              <span>Share</span>
-            </button>
+            <div className="space-y-1">
+              <p className="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
+                Interaction
+              </p>
+              <p className="font-semibold flex items-center gap-2">
+                <MessageCircle size={14} /> Discuss
+              </p>
+            </div>
           </div>
-        </header>
 
-        {/* Article Body */}
-        <div className="py-12">
+          {/* Main Copy */}
           <div
-            className="prose prose-lg max-w-none
-                       prose-headings:text-gray-900 prose-headings:font-bold
-                       prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                       prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                       prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
-                       prose-strong:text-gray-900 prose-strong:font-semibold
-                       prose-ul:text-gray-700 prose-li:mb-2
-                       prose-ol:text-gray-700
-                       prose-blockquote:border-l-4 prose-blockquote:border-[#01386e]
-                       prose-blockquote:bg-blue-50 prose-blockquote:p-6 prose-blockquote:my-8
-                       prose-blockquote:text-gray-800 prose-blockquote:italic
-                       prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline"
+            className="prose prose-stone prose-lg max-w-none
+              prose-headings:font-black prose-headings:tracking-tight
+              prose-p:text-gray-600 prose-p:leading-relaxed
+              prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:bg-blue-50/50 prose-blockquote:rounded-r-xl
+              drop-cap:text-6xl drop-cap:font-black drop-cap:mr-3 drop-cap:float-left"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
-          {article.faqs && article.faqs?.length > 0 && (
-            <Accordion type="single" collapsible>
-              {article.faqs.map(
-                (faq: { question: string; answer: string }, index: number) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger>
-                      {index + 1}. {faq.question}
-                    </AccordionTrigger>
-                    <AccordionContent>{faq.answer}</AccordionContent>
-                  </AccordionItem>
-                )
-              )}
-            </Accordion>
+
+          {/* FAQ Section with Modern Styling */}
+          {article.faqs && (
+            <div className="mt-20">
+              <h3 className="text-3xl font-black mb-8 italic">
+                Common Inquiries
+              </h3>
+              <Accordion type="single" collapsible className="space-y-4">
+                {article.faqs.map(
+                  (faq: { question: string; answer: string }, idx: number) => (
+                    <AccordionItem
+                      key={idx}
+                      value={`item-${idx}`}
+                      className="border rounded-2xl px-6 bg-gray-50/50"
+                    >
+                      <AccordionTrigger className="hover:no-underline font-bold text-lg text-left">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-gray-600 leading-relaxed">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  )
+                )}
+              </Accordion>
+            </div>
           )}
         </div>
 
-        {/* Article Footer */}
-        <footer className="py-8 border-t border-gray-100">
-          {/* Tags */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <Tag size={20} />
-              Tags
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {article.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors cursor-pointer"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </footer>
-      </div>
+        {/* Dynamic Tags */}
+        <div className="flex flex-wrap gap-2 mt-12 mb-20 justify-center">
+          {article.tags.map((tag: string) => (
+            <span
+              key={tag}
+              className="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-medium hover:border-blue-600 transition-colors cursor-pointer"
+            >
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </main>
 
-      {/* Related Articles Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Related Articles
-          </h2>
+      {/* Footer / Related (Horizontal Scroll 2026 Style) */}
+      <section className="bg-gray-900 py-24 text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="text-4xl md:text-6xl font-black tracking-tighter">
+              Keep Reading
+            </h2>
+            <button className="flex items-center gap-2 text-blue-400 font-bold hover:text-blue-300 transition-colors">
+              View Blog <ChevronRight size={20} />
+            </button>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
+            {/* Map through relatedArticles here with a hover-scale animation */}
             {relatedArticle.slice(0, 3).map((article) => (
-              <div
-                onClick={() => addSlugToParams(article.slug)}
-                className="cursor-pointer"
-                // href={`/${article.slug}`}
+              <motion.div
                 key={article.id}
+                whileHover={{ y: -10 }}
+                className="group cursor-pointer"
+                onClick={() => addSlugToParams(article.slug)}
               >
-                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                  <div className="h-48 bg-gray-200">
-                    <img
-                      src={article.image}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <span className="text-[#01386e] text-sm font-semibold">
-                      {article.category}
-                    </span>
-                    <h3 className="text-xl font-bold text-gray-900 mt-2 mb-3">
-                      {article.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm">{article.excerpt}</p>
-                  </div>
+                <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-gray-800">
+                  <Image
+                    src={article.image}
+                    className="h-full w-full object-cover"
+                    alt=""
+                    width={500}
+                    height={500}
+                  />
                 </div>
-              </div>
+                <h4 className="text-xl font-bold group-hover:text-blue-400 transition-colors line-clamp-2">
+                  {article.title}
+                </h4>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
-    </article>
+    </div>
   );
 };
+
 export default SingleArticleCard;
