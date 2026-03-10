@@ -1,60 +1,53 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Clock, User, ArrowRight } from "lucide-react";
 import { getRelatedArticles } from "@/data";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  },
+};
 
 export function LatestBlog() {
   const recentPosts = getRelatedArticles();
-  const router = useRouter();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const,
-      },
-    },
-  };
 
   return (
-    <section className="py-24 px-6 md:px-16 2xl:px-32 w-full bg-[#fcfcfd]">
+    <section className="py-12 md:py-24 px-5 md:px-16 2xl:px-32 w-full bg-[#fcfcfd]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-12 border-b border-gray-100 pb-8">
+        <div className="flex items-end justify-between mb-8 md:mb-12 border-b border-gray-100 pb-6 md:pb-8">
           <div>
-            <Badge
-              variant="outline"
-              className="mb-4 bg-primary/5 text-primary border-primary/20 px-3 py-1"
-            >
+            <span className="inline-block mb-3 md:mb-4 bg-slate-100 text-slate-600 border border-slate-200/60 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
               Fresh Perspectives
-            </Badge>
-            <h2 className="text-4xl font-bold tracking-tight text-slate-900">
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-slate-900">
               Latest from the Lab
             </h2>
           </div>
-          <Button
-            variant="link"
-            className="hidden md:flex group text-primary font-semibold"
-            onClick={() => router.push("/blog")}
+          <Link
+            href="/blog"
+            className="hidden md:flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors group"
           >
             Explore Library
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
         </div>
 
         <motion.div
@@ -62,71 +55,73 @@ export function LatestBlog() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
           {recentPosts.slice(0, 3).map((post) => (
             <motion.div key={post.id} variants={itemVariants}>
-              <Card
-                onClick={() => router.push(`/blog/${post.slug}`)}
-                className="group relative h-full border-none bg-transparent shadow-none cursor-pointer overflow-visible"
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group relative block h-full cursor-pointer"
               >
-                {/* Image Container with 3D-ish lift */}
-                <div className="relative z-0 overflow-hidden rounded-2xl aspect-[4/3] shadow-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl">
-                  <img
-                    src={post.image || "/placeholder.svg"}
+                {/* Image */}
+                <div className="relative overflow-hidden rounded-2xl aspect-[4/3] shadow-lg transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl">
+                  <Image
+                    src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
                 </div>
 
-                {/* Floating Glassmorphism Content Card */}
-                <CardContent className="relative z-10 -mt-20 mx-4 p-6 rounded-xl bg-white/80 backdrop-blur-xl border border-white/20 shadow-lg group-hover:bg-white transition-colors duration-300">
+                {/* Content card */}
+                <div className="relative -mt-12 md:-mt-16 mx-3 md:mx-4 p-4 md:p-5 rounded-xl bg-white border border-slate-100 shadow-sm group-hover:shadow-md transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded">
+                    <span className="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded">
                       Article
                     </span>
-                    <div className="flex items-center text-[10px] text-slate-400">
+                    <span className="flex items-center text-[10px] text-slate-400">
                       <Clock className="h-3 w-3 mr-1" />
                       {post.readTime}
-                    </div>
+                    </span>
                   </div>
 
-                  <h3 className="text-xl font-bold leading-tight mb-3 text-slate-900 group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="text-base md:text-lg font-bold leading-tight mb-2 md:mb-3 text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
-                  <p className="text-slate-500 text-sm line-clamp-2 mb-6 font-light leading-relaxed">
+                  <p className="text-slate-500 text-sm line-clamp-2 mb-4 md:mb-5 leading-relaxed hidden sm:block">
                     {post.excerpt}
                   </p>
 
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center">
                         <User className="h-3 w-3 text-slate-500" />
                       </div>
                       <span className="text-xs font-medium text-slate-600">
                         {post.author}
                       </span>
                     </div>
-                    <span className="text-[11px] text-slate-400 font-medium uppercase tracking-tighter">
+                    <span className="text-[11px] text-slate-400 font-medium">
                       {post.date}
                     </span>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Mobile View All Button */}
+        {/* Mobile View All */}
         <div className="mt-12 md:hidden">
-          <Button
-            className="w-full h-12 rounded-xl text-lg font-medium"
-            onClick={() => router.push("/blog")}
+          <Link
+            href="/blog"
+            className="flex items-center justify-center gap-2 w-full h-12 rounded-xl text-lg font-medium bg-slate-900 text-white hover:bg-slate-800 transition-colors"
           >
             View All Articles
-          </Button>
+          </Link>
         </div>
       </div>
     </section>

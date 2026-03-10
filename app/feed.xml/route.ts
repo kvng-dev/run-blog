@@ -32,7 +32,7 @@ export async function GET() {
     <image>
       <url>https://blog.runalpha.co/logo.png</url>
       <title>Run Alpha Blog</title>
-      <link>https://blog.runalpha.com</link>
+      <link>https://blog.runalpha.co</link>
     </image>
     ${posts
       .map(
@@ -52,7 +52,7 @@ export async function GET() {
               .join("\n      ")
           : ""
       }
-      ${post.image ? `<enclosure url="${post.image}" type="image/jpeg"/>` : ""}
+      ${post.image ? `<enclosure url="https://blog.runalpha.co${encodeURI(post.image)}" length="0" type="image/jpeg"/>` : ""}
     </item>`
       )
       .join("")}

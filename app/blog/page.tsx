@@ -70,7 +70,7 @@ const AllArticlesPage = () => {
   return (
     <div className="min-h-screen bg-[#F8FAFC] pb-20">
       {/* Editorial Header */}
-      <header className="relative pt-32 pb-16 px-6 overflow-hidden bg-white">
+      <header className="relative pt-28 md:pt-32 pb-10 md:pb-16 px-5 md:px-6 overflow-hidden bg-white">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-5 pointer-events-none">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,#01386e,transparent)]" />
         </div>
@@ -81,10 +81,10 @@ const AllArticlesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6">
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-4 md:mb-6">
               Insights & <span className="text-primary italic">Strategy</span>
             </h1>
-            <p className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
+            <p className="text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
               Deep dives into market dynamics, wealth preservation, and the
               future of global investment.
             </p>
@@ -93,11 +93,11 @@ const AllArticlesPage = () => {
       </header>
 
       {/* Persistence Bar: Search & Controls */}
-      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-y border-slate-100 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+      <div className="sticky top-16 z-50 bg-white/80 backdrop-blur-xl border-y border-slate-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-5 md:px-6 py-3 md:py-4">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-between items-stretch sm:items-center">
             {/* Search Input */}
-            <div className="relative w-full md:max-w-sm group">
+            <div className="relative w-full sm:max-w-sm group">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 group-focus-within:text-primary transition-colors" />
               <input
                 type="text"
@@ -109,7 +109,7 @@ const AllArticlesPage = () => {
             </div>
 
             {/* Filters */}
-            <div className="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+            <div className="flex items-center gap-3 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0 no-scrollbar">
               <select
                 className="bg-transparent border-none text-sm font-semibold text-slate-600 focus:ring-0 cursor-pointer"
                 value={selectedCategory}
@@ -122,7 +122,7 @@ const AllArticlesPage = () => {
                 ))}
               </select>
 
-              <div className="h-4 w-[1px] bg-slate-200 hidden md:block" />
+              <div className="h-4 w-[1px] bg-slate-200 hidden sm:block" />
 
               <div className="flex bg-slate-100 p-1 rounded-full">
                 <button
@@ -152,7 +152,7 @@ const AllArticlesPage = () => {
       </div>
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-6 py-12">
+      <main className="max-w-7xl mx-auto px-5 md:px-6 py-8 md:py-12">
         <AnimatePresence mode="wait">
           {paginatedArticles.length === 0 ? (
             <motion.div
@@ -196,15 +196,15 @@ const AllArticlesPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.05 }}
-                    className={`group bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ${
-                      viewMode === "list" ? "md:flex md:h-64" : ""
+                    className={`group bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 ${
+                      viewMode === "list" ? "sm:flex sm:h-56 md:h-64" : ""
                     }`}
                   >
                     <Link href={`/blog/${article.slug}`} className="contents">
                       {/* Image container */}
                       <div
                         className={`${
-                          viewMode === "list" ? "md:w-1/3" : "w-full h-56"
+                          viewMode === "list" ? "sm:w-1/3 h-48 sm:h-full" : "w-full h-48 md:h-56"
                         } overflow-hidden relative`}
                       >
                         <img
@@ -220,8 +220,8 @@ const AllArticlesPage = () => {
 
                       {/* Content container */}
                       <div
-                        className={`p-6 flex flex-col justify-between ${
-                          viewMode === "list" ? "md:w-2/3" : ""
+                        className={`p-4 md:p-6 flex flex-col justify-between ${
+                          viewMode === "list" ? "sm:w-2/3" : ""
                         }`}
                       >
                         <div>
@@ -268,7 +268,7 @@ const AllArticlesPage = () => {
 
         {/* Modern Pagination */}
         {totalPages > 1 && (
-          <div className="mt-20 flex justify-center gap-2">
+          <div className="mt-12 md:mt-20 flex justify-center gap-2 flex-wrap">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <button
                 key={page}

@@ -1,6 +1,26 @@
-// blogArticles.js - Run Alpha Blog Articles Data
+// Run Alpha Blog Articles Data
 
-export const blogArticles = [
+export interface Article {
+  id: number;
+  title: string;
+  excerpt: string;
+  metaDescription: string;
+  author: string;
+  date: string;
+  readTime: string;
+  category: string;
+  tags: string[];
+  image: string;
+  slug: string;
+  featured: boolean;
+  published: boolean;
+  content: string;
+  faqs?: { question: string; answer: string }[];
+}
+
+export type ArticleMeta = Omit<Article, "content">;
+
+const blogArticles: Article[] = [
   {
     id: 5,
     title: "Family Office vs Wealth Manager: What Nigerian HNWIs Need to Know",
@@ -2006,46 +2026,89 @@ The question facing high-net-worth Nigerians isn't whether currency volatility w
   },
 ];
 
-export default blogArticles;
+// ---------------------------------------------------------------------------
+// Pre-computed data — calculated once at module load, not on every call
+// ---------------------------------------------------------------------------
 
-// Helper functions for blog data
-export const getFeaturedArticles = () => {
-  return blogArticles.filter((article) => article.featured);
-};
+function stripContent(article: Article): ArticleMeta {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { content, ...meta } = article;
+  return meta;
+}
 
-export const getArticleBySlug = (slug: string) => {
-  return blogArticles.find((article) => article.slug === slug);
-};
+const byDateDesc = (a: { date: string }, b: { date: string }) =>
+  new Date(b.date).getTime() - new Date(a.date).getTime();
 
-export const getArticlesByCategory = (category: string) => {
-  return blogArticles.filter((article) => article.category === category);
-};
+// O(1) slug lookup
+const slugMap = new Map<string, Article>(
+  blogArticles.map((a) => [a.slug, a])
+);
 
-export const getArticlesByTag = (tag: string) => {
-  return blogArticles.filter((article) => article.tags.includes(tag));
-};
+// Pre-sorted & filtered (metadata only — no content in these arrays)
+const _published: ArticleMeta[] = blogArticles
+  .filter((a) => a.published)
+  .sort(byDateDesc)
+  .map(stripContent);
 
-export const getPublishedArticles = () => {
-  return blogArticles.filter((article) => article.published);
-};
+const _featured: ArticleMeta[] = blogArticles
+  .filter((a) => a.featured)
+  .map(stripContent);
 
-export const getRelatedArticles = () => {
-  return blogArticles
-    .filter((article) => !article.featured)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-};
-export const getRecentArticles = (limit = 3) => {
-  return blogArticles
-    .filter((article) => article.published)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, limit);
-};
+const _nonFeaturedByDate: ArticleMeta[] = blogArticles
+  .filter((a) => !a.featured)
+  .sort(byDateDesc)
+  .map(stripContent);
 
-export const getAllCategories = () => {
-  return [...new Set(blogArticles.map((article) => article.category))];
-};
+// Category → articles map
+const _categoryMap = new Map<string, ArticleMeta[]>();
+for (const article of blogArticles) {
+  const meta = stripContent(article);
+  const list = _categoryMap.get(article.category);
+  if (list) list.push(meta);
+  else _categoryMap.set(article.category, [meta]);
+}
 
-export const getAllTags = () => {
-  const allTags = blogArticles.flatMap((article) => article.tags);
-  return [...new Set(allTags)];
-};
+const _allCategories: string[] = [..._categoryMap.keys()];
+
+const _allTags: string[] = [
+  ...new Set(blogArticles.flatMap((a) => a.tags)),
+];
+
+// ---------------------------------------------------------------------------
+// Public API
+// ---------------------------------------------------------------------------
+
+/** Full article with content — use only on article detail pages (server) */
+export const getArticleBySlug = (slug: string): Article | undefined =>
+  slugMap.get(slug);
+
+/** All published articles sorted newest-first (no content) */
+export const getPublishedArticles = (): ArticleMeta[] => _published;
+
+/** Featured articles (no content) */
+export const getFeaturedArticles = (): ArticleMeta[] => _featured;
+
+/** Non-featured articles sorted newest-first (no content) */
+export const getRelatedArticles = (): ArticleMeta[] => _nonFeaturedByDate;
+
+/** Most recent published articles (no content) */
+export const getRecentArticles = (limit = 3): ArticleMeta[] =>
+  _published.slice(0, limit);
+
+/** Articles in a given category (no content) */
+export const getArticlesByCategory = (category: string): ArticleMeta[] =>
+  _categoryMap.get(category) ?? [];
+
+/** Articles with a given tag (no content) */
+export const getArticlesByTag = (tag: string): ArticleMeta[] =>
+  _published.filter((a) => a.tags.includes(tag));
+
+/** All unique category names */
+export const getAllCategories = (): string[] => _allCategories;
+
+/** All unique tags */
+export const getAllTags = (): string[] => _allTags;
+
+/** All article slugs — used by generateStaticParams */
+export const getAllSlugs = (): string[] =>
+  blogArticles.filter((a) => a.published).map((a) => a.slug);

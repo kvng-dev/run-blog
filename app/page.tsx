@@ -24,7 +24,7 @@ const blogJsonLd = {
   publisher: {
     "@type": "Organization",
     name: "Run Alpha",
-    url: "https://runalpha.com",
+    url: "https://runalpha.co",
     logo: {
       "@type": "ImageObject",
       url: "https://blog.runalpha.co/logo.png",
@@ -40,11 +40,14 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
       />
 
-      <div className="min-h-screen bg-background ">
-        <div className="flex flex-row h-full">
+      <div className="min-h-screen bg-background">
+        {/* Hero — full width, above everything */}
+        <BlogHeroSection />
+
+        {/* Content area — sidebar + main */}
+        <div className="flex flex-row">
           <BlogSidebar />
-          <main className="flex-1">
-            <BlogHeroSection />
+          <main className="flex-1 min-w-0">
             <FeaturedPosts />
             <LatestBlog />
           </main>

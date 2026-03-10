@@ -1,4 +1,4 @@
-import { getArticleBySlug } from "@/data";
+import { getArticleBySlug, getAllSlugs } from "@/data";
 import SingleArticleCard from "@/components/SingleArticleCard";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -7,6 +7,10 @@ interface PageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export function generateStaticParams() {
+  return getAllSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -22,8 +26,8 @@ export async function generateMetadata({
     };
   }
 
-  const canonicalUrl = `https://blog.runalpha.com/blog/${slug}`;
-  const imageUrl = post.image || "https://blog.runalpha.com/og-image.jpg";
+  const canonicalUrl = `https://blog.runalpha.co/blog/${slug}`;
+  const imageUrl = post.image || "https://blog.runalpha.co/og-image.jpg";
 
   return {
     title: post.title,
@@ -122,7 +126,7 @@ const SingleArticle = async ({ params }: PageProps) => {
             "@type": "BlogPosting",
             headline: article.title,
             description: article.excerpt || article.metaDescription,
-            image: article.image || "https://blog.runalpha.com/og-image.jpg",
+            image: article.image || "https://blog.runalpha.co/og-image.jpg",
             author: {
               "@type": "Person",
               name: article.author || "Run Alpha",
@@ -132,14 +136,14 @@ const SingleArticle = async ({ params }: PageProps) => {
               name: "Run Alpha",
               logo: {
                 "@type": "ImageObject",
-                url: "https://blog.runalpha.com/logo.png",
+                url: "https://blog.runalpha.co/logo.png",
               },
             },
             datePublished: article.date,
             dateModified: article.date,
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://blog.runalpha.com/blog/${slug}`,
+              "@id": `https://blog.runalpha.co/blog/${slug}`,
             },
             keywords: article.tags?.join(", ") || "",
             articleSection: article.category,

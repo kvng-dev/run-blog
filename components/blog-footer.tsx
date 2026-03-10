@@ -34,8 +34,8 @@ export function BlogFooter() {
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="py-10 md:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-8 lg:gap-12">
             {/* Brand Section */}
             <div className="lg:col-span-1 space-y-6">
               <div className="space-y-4">
@@ -81,33 +81,33 @@ export function BlogFooter() {
 
               {/* Social Links */}
               <div className="flex space-x-3">
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="border-gray-600 hover:bg-blue-600 hover:border-blue-600 transition-all"
+                <a
+                  href="https://www.instagram.com/runalpha.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-600 flex items-center justify-center text-gray-300 hover:bg-slate-700 hover:text-white transition-all"
+                  aria-label="Instagram"
                 >
-                  <a href="https://www.instagram.com/runalpha.co/">
-                    <Instagram className="h-4 w-4" />
-                  </a>
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="border-gray-600 hover:bg-cyan-600 hover:border-cyan-600 transition-all"
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/runalpha"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-600 flex items-center justify-center text-gray-300 hover:bg-slate-700 hover:text-white transition-all"
+                  aria-label="LinkedIn"
                 >
-                  <a href="https://www.linkedin.com/company/runalpha">
-                    <Linkedin className="h-4 w-4" />
-                  </a>
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="border-gray-600 hover:bg-orange-600 hover:border-orange-600 transition-all"
+                  <Linkedin className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61581323386413"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-600 flex items-center justify-center text-gray-300 hover:bg-slate-700 hover:text-white transition-all"
+                  aria-label="Facebook"
                 >
-                  <a href=" https://www.facebook.com/profile.php?id=61581323386413">
-                    <Facebook className="h-4 w-4" />
-                  </a>
-                </Button>
+                  <Facebook className="h-4 w-4" />
+                </a>
               </div>
             </div>
 
@@ -248,11 +248,11 @@ export function BlogFooter() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 py-8">
+        <div className="border-t border-gray-700 py-6 md:py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-gray-400">
+            <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-sm text-gray-400 text-center">
               <p>© {currentYear} Run Alpha. All rights reserved.</p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 md:gap-4 flex-wrap justify-center">
                 <Link
                   href="https://runalpha.co/privacy-policy"
                   className="hover:text-white transition-colors"
@@ -278,8 +278,8 @@ export function BlogFooter() {
         </div>
 
         {/* Investment Disclaimer */}
-        <div className="border-t border-gray-700 py-6">
-          <p className="text-xs text-gray-500 text-center leading-relaxed max-w-4xl mx-auto">
+        <div className="border-t border-gray-700 py-5 md:py-6">
+          <p className="text-[11px] md:text-xs text-gray-500 text-center leading-relaxed max-w-4xl mx-auto">
             <strong className="text-gray-400">Investment Disclaimer:</strong>{" "}
             The content provided is for educational and informational purposes
             only. It does not constitute investment advice, and should not be

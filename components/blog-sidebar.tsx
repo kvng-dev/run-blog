@@ -1,264 +1,159 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import {
-  Instagram,
-  Linkedin,
-  Mail,
-  Search,
-  Twitter,
-  TrendingUp,
-  Clock,
-  Tag,
-  Sparkles,
-  ArrowRight,
-  Send,
-  Globe,
-  ShieldCheck,
-  Zap,
-} from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+  getAllCategories,
+  getRecentArticles,
+  getArticlesByCategory,
+} from "@/data";
+import Image from "next/image";
 
-const sidebarItems = [
-  {
-    name: "Investment Management",
-    href: "#",
-    count: 12,
-    icon: TrendingUp,
-    color: "text-emerald-500",
-  },
-  {
-    name: "FX Risk Management",
-    href: "#",
-    count: 8,
-    icon: Globe,
-    color: "text-blue-500",
-  },
-  {
-    name: "Hedging Strategies",
-    href: "#",
-    count: 6,
-    icon: ShieldCheck,
-    color: "text-indigo-500",
-  },
-  {
-    name: "Portfolio Protection",
-    href: "#",
-    count: 9,
-    icon: Zap,
-    color: "text-amber-500",
-  },
-  {
-    name: "Market Analysis",
-    href: "#",
-    count: 15,
-    icon: Search,
-    color: "text-rose-500",
-  },
-];
-
-const popularPosts = [
-  {
-    title: "The Silent Wealth Killer: How FX Fluctuations Erode Your Portfolio",
-    href: "#",
-    readTime: "10 min",
-    date: "2024-03-12",
-  },
-  {
-    title: "Hedging Strategies for Nigerian Investors",
-    href: "#",
-    readTime: "12 min",
-    date: "2024-03-10",
-  },
-];
+const dateFormat: Intl.DateTimeFormatOptions = {
+  month: "short",
+  day: "numeric",
+};
 
 const BlogSidebar = () => {
-  // const [email, setEmail] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0 },
-  };
+  const categories = getAllCategories();
+  const recentPosts = getRecentArticles(5);
 
   return (
-    <aside className="hidden lg:block lg:w-80 xl:w-[400px] relative">
-      <div className="sticky top-24 p-1 space-y-8 h-[calc(100vh-8rem)] overflow-y-auto no-scrollbar">
-        {/* Modern Search Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative group"
-        >
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-10 group-focus-within:opacity-25 transition duration-1000"></div>
-          <div className="relative flex items-center bg-white border border-slate-100 rounded-2xl p-1 shadow-sm">
-            <Search className="ml-3 h-4 w-4 text-slate-400" />
-            <Input
-              type="text"
-              placeholder="AI-powered search..."
-              className="border-none focus-visible:ring-0 text-sm bg-transparent"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <kbd className="hidden xl:inline-flex h-6 select-none items-center gap-1 rounded border border-slate-200 bg-slate-50 px-1.5 font-mono text-[10px] font-medium text-slate-500 mr-2">
-              ⌘K
-            </kbd>
-          </div>
-        </motion.div>
-
-        {/* Categories Section */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="space-y-4"
-        >
-          <div className="flex items-center justify-between px-2">
-            <div className="flex items-center gap-2">
-              <div className="p-2 bg-blue-50 rounded-lg">
-                <Tag className="h-4 w-4 text-blue-600" />
-              </div>
-              <h3 className="font-bold text-sm text-slate-900 tracking-tight">
-                Intelligence Categories
-              </h3>
-            </div>
-          </div>
-          <div className="grid gap-2">
-            {sidebarItems.map((item, index) => (
-              <motion.div key={index} variants={itemVariants}>
+    <aside className="hidden lg:block lg:w-80 xl:w-96 relative">
+      <div className="sticky top-24 px-6 xl:px-8 py-8 space-y-8 h-[calc(100vh-6rem)] overflow-y-auto no-scrollbar">
+        {/* Topics */}
+        <div>
+          <h3 className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-4">
+            Topics
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {categories.map((category) => {
+              const count = getArticlesByCategory(category).length;
+              return (
                 <Link
-                  href={item.href}
-                  className="group flex items-center justify-between p-3 rounded-xl hover:bg-white hover:shadow-md hover:shadow-slate-200/50 border border-transparent hover:border-slate-100 transition-all duration-300"
+                  key={category}
+                  href={`/blog?category=${encodeURIComponent(category)}`}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13px] font-medium bg-slate-50 text-slate-600 border border-slate-200/60 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-300 transition-all duration-200"
                 >
-                  <div className="flex items-center gap-3">
-                    <item.icon
-                      className={`h-4 w-4 ${item.color} group-hover:scale-110 transition-transform`}
-                    />
-                    <span className="text-sm font-medium text-slate-600 group-hover:text-slate-900">
-                      {item.name}
-                    </span>
-                  </div>
-                  <span className="text-[10px] font-bold bg-slate-100 text-slate-500 w-6 h-6 flex items-center justify-center rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    {item.count}
+                  {category}
+                  <span className="text-[11px] text-slate-400 font-normal">
+                    {count}
                   </span>
                 </Link>
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Trending Section */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2 px-2">
-            <div className="p-2 bg-rose-50 rounded-lg">
-              <Sparkles className="h-4 w-4 text-rose-600" />
-            </div>
-            <h3 className="font-bold text-sm text-slate-900 tracking-tight">
-              Trending Now
-            </h3>
-          </div>
-          <div className="space-y-3">
-            {popularPosts.map((post, index) => (
-              <Link key={index} href={post.href} className="block group">
-                <div className="relative p-4 rounded-2xl bg-slate-50 border border-slate-100 group-hover:bg-white group-hover:border-blue-100 group-hover:shadow-lg group-hover:shadow-blue-500/5 transition-all duration-300">
-                  <h4 className="text-sm font-semibold text-slate-800 leading-snug mb-3 group-hover:text-blue-600 transition-colors">
+        {/* Recent Posts */}
+        <div>
+          <h3 className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-4">
+            Recent
+          </h3>
+          <div className="space-y-5">
+            {recentPosts.map((post, i) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex gap-4 items-start"
+              >
+                <span className="text-2xl font-bold leading-none text-slate-200 group-hover:text-slate-900 transition-colors tabular-nums shrink-0 mt-0.5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-[13px] font-semibold text-slate-700 leading-snug group-hover:text-slate-900 transition-colors line-clamp-2">
                     {post.title}
                   </h4>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" /> {post.readTime}
-                      </span>
-                    </div>
-                    <ArrowRight className="h-3 w-3 text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
-                  </div>
+                  <p className="text-[11px] text-slate-400 mt-1.5 flex items-center gap-1.5">
+                    <span>
+                      {new Date(post.date).toLocaleDateString("en-US", dateFormat)}
+                    </span>
+                    <span className="inline-block w-0.5 h-0.5 rounded-full bg-slate-300" />
+                    <span>{post.readTime}</span>
+                  </p>
                 </div>
               </Link>
             ))}
           </div>
         </div>
 
-        {/* Futuristic Newsletter */}
-        <motion.div
-          whileHover={{ y: -5 }}
-          className="relative overflow-hidden bg-slate-900 rounded-3xl p-6 text-white shadow-2xl shadow-blue-900/20"
+        {/* Platform CTA */}
+        <a
+          href="https://runalpha.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 p-6 text-white hover:shadow-lg hover:shadow-slate-900/10 transition-shadow"
         >
-          <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl"></div>
-          <div className="relative z-10 space-y-4">
-            <div className="flex items-center gap-2">
-              <Mail className="h-5 w-5 text-blue-400" />
-              <h3 className="font-bold text-base">The Weekly Edge</h3>
-            </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Join 10k+ professionals getting curated FX insights every Tuesday.
-            </p>
-            <div className="space-y-2">
-              <Input
-                placeholder="Email address"
-                className="bg-white/10 border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:ring-blue-500"
-              />
-              <Button className="w-full bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold transition-all active:scale-95">
-                <Send className="mr-2 h-3 w-3" /> Subscribe
-              </Button>
-            </div>
+          <div className="flex items-start justify-between mb-3">
+            <Image
+              src="/logo.png"
+              alt="Run Alpha"
+              width={32}
+              height={32}
+              className="rounded-lg"
+            />
+            <ArrowUpRight className="h-4 w-4 text-slate-500 group-hover:text-white transition-colors" />
           </div>
-        </motion.div>
+          <p className="text-sm font-semibold mb-1">Explore Run Alpha</p>
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Wealth management, FX hedging, and investment solutions.
+          </p>
+        </a>
 
-        {/* Social Ecosystem */}
-        <div className="pt-4 border-t border-slate-100">
-          <div className="flex justify-between items-center mb-4 px-2">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">
-              Connect
-            </span>
-            <div className="h-[1px] flex-1 bg-slate-100 ml-4"></div>
-          </div>
-          <div className="flex gap-2">
-            {[
-              { icon: Twitter, color: "hover:bg-sky-500", text: "sky" },
-              { icon: Linkedin, color: "hover:bg-blue-700", text: "blue" },
-              { icon: Instagram, color: "hover:bg-pink-600", text: "pink" },
-            ].map((social, i) => (
-              <Button
-                key={i}
-                variant="outline"
-                size="icon"
-                className={`rounded-xl border-slate-100 hover:text-white ${social.color} transition-all duration-300`}
-              >
-                <social.icon className="h-4 w-4" />
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Dynamic Trust Badge */}
-        <div className="flex items-center gap-4 px-4 py-3 bg-white border border-slate-100 rounded-2xl">
-          <div className="flex -space-x-2">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="w-6 h-6 rounded-full border-2 border-white bg-slate-200"
-              ></div>
-            ))}
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[10px] font-black text-slate-900 italic">
-              500+ ARTICLES
-            </span>
-            <span className="text-[10px] text-slate-400 font-medium">
-              Curated by global experts
-            </span>
-          </div>
+        {/* Social row */}
+        <div className="flex items-center gap-3 pt-2">
+          {[
+            {
+              href: "https://www.instagram.com/runalpha.co/",
+              label: "Instagram",
+              svg: (
+                <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="5" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              ),
+            },
+            {
+              href: "https://www.linkedin.com/company/runalpha",
+              label: "LinkedIn",
+              svg: (
+                <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor">
+                  <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z" />
+                </svg>
+              ),
+            },
+            {
+              href: "https://www.facebook.com/profile.php?id=61581323386413",
+              label: "Facebook",
+              svg: (
+                <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                </svg>
+              ),
+            },
+          ].map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-slate-700 transition-colors"
+              aria-label={social.label}
+            >
+              {social.svg}
+            </a>
+          ))}
+          <span className="flex-1" />
+          <a
+            href="https://runalpha.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            runalpha.co
+            <ExternalLink className="h-3 w-3" />
+          </a>
         </div>
       </div>
     </aside>

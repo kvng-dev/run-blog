@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Run Alpha Blog - Hedge Fund Insights & Investment Strategies",
     description:
       "Expert insights on hedge funds, investment strategies, and quantitative finance.",
-    images: ["/twitter-image.jpg"],
+    images: ["/og-image.jpg"],
     creator: "@RunAlpha",
     site: "@RunAlpha",
   },
@@ -84,11 +84,11 @@ export const metadata: Metadata = {
       "application/rss+xml": "https://blog.runalpha.co/feed.xml",
     },
   },
-  verification: {
-    google: "your-google-verification-code", // Add your verification code
-    // yandex: "your-yandex-verification-code",
-    // bing: "your-bing-verification-code",
-  },
+  // verification: {
+  //   google: "your-google-verification-code",
+  //   yandex: "your-yandex-verification-code",
+  //   bing: "your-bing-verification-code",
+  // },
   category: "Finance",
 };
 
@@ -131,11 +131,8 @@ export default function RootLayout({
         />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
 
-        {/* Favicon and App Icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
+        {/* Favicon */}
+        <link rel="icon" href="/logo.png" type="image/png" />
       </head>
       <body className={`${geistSans.className} antialiased`}>
         <BlogHeader />
