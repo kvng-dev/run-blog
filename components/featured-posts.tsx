@@ -29,18 +29,6 @@ export function FeaturedPosts() {
         >
           {/* Text Content Area */}
           <div className="md:col-span-5 flex flex-col order-2 md:order-1 z-10">
-            <motion.div
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <Badge
-                variant="outline"
-                className="mb-6 uppercase tracking-widest text-[10px] px-3 py-1 border-primary/20 text-primary bg-primary/5"
-              >
-                Featured Story
-              </Badge>
-            </motion.div>
 
             <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-4 md:mb-6 group-hover:text-primary transition-colors">
               {art.title}

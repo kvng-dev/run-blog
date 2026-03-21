@@ -75,7 +75,7 @@ const AllArticlesPage = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,#01386e,transparent)]" />
         </div>
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10 mt-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

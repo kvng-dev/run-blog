@@ -103,7 +103,7 @@ const SingleArticleCard = ({ article }: Props) => {
       />
 
       {/* Floating Modern Navigation */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl">
+      <nav className="fixed top-6 mt-24 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl">
         <div className="bg-white/70 backdrop-blur-md border border-white/20 shadow-2xl rounded-full px-6 py-3 flex items-center justify-between">
           <button
             onClick={() => router.back()}

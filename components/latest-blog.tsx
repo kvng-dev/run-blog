@@ -34,9 +34,6 @@ export function LatestBlog() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-8 md:mb-12 border-b border-gray-100 pb-6 md:pb-8">
           <div>
-            <span className="inline-block mb-3 md:mb-4 bg-slate-100 text-slate-600 border border-slate-200/60 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-              Fresh Perspectives
-            </span>
             <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-slate-900">
               Latest from the Lab
             </h2>

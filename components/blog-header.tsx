@@ -19,7 +19,7 @@ export function BlogHeader() {
   const [mobileNav, setMobileNav] = useState(false);
   const { scrollY } = useScroll();
 
-  const headerPadding = useTransform(scrollY, [0, 50], ["1.5rem", "0.75rem"]);
+  const headerPadding = useTransform(scrollY, [0, 50], ["1.2rem", "0.75rem"]);
   const headerBg = useTransform(
     scrollY,
     [0, 50],

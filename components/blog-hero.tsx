@@ -12,7 +12,7 @@ const BlogHeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[90vh] flex items-center bg-[#020617] overflow-x-clip mt-24 px-5 md:px-12 lg:px-16 pt-10 md:pt-12 pb-16 md:pb-24"
+      className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[98vh] flex items-center bg-[#020617] overflow-x-clip mt-24 px-5 md:px-12 lg:px-16 pt-10 md:pt-12 pb-16 md:pb-24"
     >
       {/* Background glow */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -70,7 +70,7 @@ const BlogHeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="absolute -top-10 -right-10 z-20"
+              className="absolute -top-10 right-10 z-20"
             >
               <motion.div
                 animate={{ y: [0, -8, 0] }}
