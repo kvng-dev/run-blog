@@ -30,11 +30,11 @@ export function LatestBlog() {
   const recentPosts = getRelatedArticles();
 
   return (
-    <section className="py-12 md:py-24 px-5 md:px-16 2xl:px-32 w-full bg-[#fcfcfd]">
+    <section className="py-8 sm:py-12 md:py-24 px-4 sm:px-5 md:px-16 2xl:px-32 w-full bg-[#fcfcfd]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-end justify-between mb-8 md:mb-12 border-b border-gray-100 pb-6 md:pb-8">
+        <div className="flex items-end justify-between mb-6 sm:mb-8 md:mb-12 border-b border-gray-100 pb-4 sm:pb-6 md:pb-8">
           <div>
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold tracking-tight text-slate-900">
               Latest from the Lab
             </h2>
           </div>
@@ -52,7 +52,7 @@ export function LatestBlog() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8"
         >
           {recentPosts.slice(0, 3).map((post) => (
             <motion.div key={post.id} variants={itemVariants}>
@@ -73,7 +73,7 @@ export function LatestBlog() {
                 </div>
 
                 {/* Content card */}
-                <div className="relative -mt-12 md:-mt-16 mx-3 md:mx-4 p-4 md:p-5 rounded-xl bg-white border border-slate-100 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+                <div className="relative -mt-10 sm:-mt-12 md:-mt-16 mx-2 sm:mx-3 md:mx-4 p-3 sm:p-4 md:p-5 rounded-xl bg-white border border-slate-100 shadow-sm group-hover:shadow-md transition-shadow duration-300">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="bg-slate-100 text-slate-600 text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded">
                       Article
@@ -84,7 +84,7 @@ export function LatestBlog() {
                     </span>
                   </div>
 
-                  <h3 className="text-base md:text-lg font-bold leading-tight mb-2 md:mb-3 text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2">
+                  <h3 className="text-sm sm:text-base md:text-lg font-bold leading-tight mb-2 md:mb-3 text-slate-900 group-hover:text-slate-700 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
@@ -112,10 +112,10 @@ export function LatestBlog() {
         </motion.div>
 
         {/* Mobile View All */}
-        <div className="mt-12 md:hidden">
+        <div className="mt-8 sm:mt-12 md:hidden">
           <Link
             href="/blog"
-            className="flex items-center justify-center gap-2 w-full h-12 rounded-xl text-lg font-medium bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+            className="flex items-center justify-center gap-2 w-full h-11 sm:h-12 rounded-xl text-base sm:text-lg font-medium bg-slate-900 text-white hover:bg-slate-800 transition-colors"
           >
             View All Articles
           </Link>

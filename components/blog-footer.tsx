@@ -34,47 +34,45 @@ export function BlogFooter() {
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="py-10 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-8 lg:gap-12">
+        <div className="py-8 md:py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {/* Brand Section */}
             <div className="lg:col-span-1 space-y-6">
               <div className="space-y-4">
-                <Link href="/" className="flex items-center space-x-3">
-                  <div className="h-12 w-12 rounded-lg bg-white flex items-center justify-center p-1.5">
-                    <Image src="/white.png" alt="" height={30} width={100} />
+                <Link href="/" className="flex items-center space-x-2.5 gap-2">
+                  <div className="h-9 w-9 rounded-lg bg-white flex items-center justify-center p-1">
+                    <Image src="/white.png" alt="" height={24} width={80} />
                   </div>
                   <div>
-                    <span className="font-bold text-xl text-white">
+                    <span className="font-bold text-base text-white">
                       Run Alpha
                     </span>
-                    <div className="text-sm text-gray-400 -mt-1">Insights</div>
+                    <div className="text-xs text-gray-400 -mt-0.5">Insights</div>
                   </div>
                 </Link>
-                <p className="text-gray-300 leading-relaxed">
-                  Run Alpha investment policy focuses on delivering sustainable,
-                  risk-adjusted returns through data-driven strategies and
-                  disciplined portfolio management. We are committed to
-                  delivering financial advisory and investment management
-                  services with the highest level of service and transparency.
+                <p className="text-gray-400 leading-relaxed text-xs mt-2">
+                  Run Alpha delivers sustainable, risk-adjusted returns through
+                  data-driven strategies and disciplined portfolio management
+                  with the highest level of transparency.
                 </p>
               </div>
 
               {/* Contact Info */}
               <div className="space-y-3">
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <Globe className="h-4 w-4 text-blue-400" />
+                <div className="flex items-center space-x-2.5 text-gray-400 gap-2">
+                  <Globe className="h-3.5 w-3.5 text-blue-400 shrink-0" />
                   <a href="https://runalpha.co">
-                    <span className="text-sm">www.runalpha.co</span>
+                    <span className="text-xs">www.runalpha.co</span>
                   </a>
                 </div>
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <Mail className="h-4 w-4 text-blue-400" />
-                  <span className="text-sm">hello@runalpha.co</span>
+                <div className="flex items-center gap-2 space-x-2.5 text-gray-400">
+                  <Mail className="h-3.5 w-3.5 text-blue-400 shrink-0" />
+                  <span className="text-xs">hello@runalpha.co</span>
                 </div>
-                <div className="flex items-center space-x-3 text-gray-300">
-                  <MapPin className="h-4 w-4 text-blue-400" />
-                  <span className="text-sm">
-                    1 Uwa Close, Off Billings Way, <br /> Lagos, Nigeria
+                <div className="flex items-center space-x-2.5 gap-2 text-gray-400">
+                  <MapPin className="h-3.5 w-3.5 text-blue-400 shrink-0" />
+                  <span className="text-xs">
+                    1 Uwa Close, Off Billings Way, Lagos, Nigeria
                   </span>
                 </div>
               </div>
@@ -85,36 +83,36 @@ export function BlogFooter() {
                   href="https://www.instagram.com/runalpha.co/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-600 flex items-center justify-center text-gray-300 hover:bg-slate-700 hover:text-white transition-all"
+                  className="w-8 h-8 rounded-md bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-slate-700 hover:text-white transition-all"
                   aria-label="Instagram"
                 >
-                  <Instagram className="h-4 w-4" />
+                  <Instagram className="h-3.5 w-3.5" />
                 </a>
                 <a
                   href="https://www.linkedin.com/company/runalpha"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-600 flex items-center justify-center text-gray-300 hover:bg-slate-700 hover:text-white transition-all"
+                  className="w-8 h-8 rounded-md bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-slate-700 hover:text-white transition-all"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="h-4 w-4" />
+                  <Linkedin className="h-3.5 w-3.5" />
                 </a>
                 <a
                   href="https://www.facebook.com/profile.php?id=61581323386413"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-gray-800 border border-gray-600 flex items-center justify-center text-gray-300 hover:bg-slate-700 hover:text-white transition-all"
+                  className="w-8 h-8 rounded-md bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 hover:bg-slate-700 hover:text-white transition-all"
                   aria-label="Facebook"
                 >
-                  <Facebook className="h-4 w-4" />
+                  <Facebook className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>
 
             {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg text-white flex items-center gap-2">
-                <Users className="h-4 w-4 text-blue-400" />
+            <div className="space-y-5">
+              <h3 className="font-semibold text-sm text-white flex items-center gap-2">
+                <Users className="h-3.5 w-3.5 text-blue-400" />
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -136,7 +134,7 @@ export function BlogFooter() {
                   <li key={index}>
                     <Link
                       href={link.href}
-                      className="text-gray-300 hover:text-blue-400 transition-colors text-sm flex items-center group"
+                      className="text-gray-400 hover:text-blue-400 transition-colors text-xs flex items-center group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-200">
                         {link.label}
@@ -148,9 +146,9 @@ export function BlogFooter() {
             </div>
 
             {/* Services */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg text-white flex items-center gap-2">
-                <Shield className="h-4 w-4 text-blue-400" />
+            <div className="space-y-5">
+              <h3 className="font-semibold text-sm text-white flex items-center gap-2">
+                <Shield className="h-3.5 w-3.5 text-blue-400" />
                 Our Services
               </h3>
               <ul className="space-y-3">
@@ -175,7 +173,7 @@ export function BlogFooter() {
                   <li key={index}>
                     <Link
                       href={service.href}
-                      className="text-gray-300 hover:text-blue-400 transition-colors text-sm flex items-center group"
+                      className="text-gray-400 hover:text-blue-400 transition-colors text-xs flex items-center group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-200">
                         {service.label}
@@ -187,21 +185,21 @@ export function BlogFooter() {
             </div>
 
             {/* Newsletter */}
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg text-white flex items-center gap-2">
-                <Mail className="h-4 w-4 text-blue-400" />
+            <div className="space-y-5">
+              <h3 className="font-semibold text-sm text-white flex items-center gap-2">
+                <Mail className="h-3.5 w-3.5 text-blue-400" />
                 Stay Informed
               </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                Get exclusive insights on market trends, investment strategies,
-                and risk management delivered to your inbox weekly.
+              <p className="text-gray-400 text-xs leading-relaxed">
+                Get insights on market trends and investment strategies
+                delivered to your inbox.
               </p>
 
               <div className="space-y-3">
                 <div className="relative">
                   <Input
                     type="email"
-                    placeholder="Enter your email address"
+                    placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     onKeyDown={(e) => {
@@ -209,23 +207,23 @@ export function BlogFooter() {
                         handleNewsletterSubmit();
                       }
                     }}
-                    className="bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-blue-500 transition-colors"
+                    className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-blue-500 transition-colors text-xs h-9"
                   />
                 </div>
 
                 <Button
                   onClick={handleNewsletterSubmit}
-                  className="w-full bg-gradient-to-tr from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-300"
+                  className="w-full bg-gradient-to-tr from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 transition-all duration-300 text-xs h-9"
                   disabled={isSubscribed}
                 >
                   {isSubscribed ? (
                     <>
-                      <Mail className="mr-2 h-4 w-4" />
+                      <Mail className="mr-1.5 h-3 w-3" />
                       Subscribed!
                     </>
                   ) : (
                     <>
-                      <Mail className="mr-2 h-4 w-4" />
+                      <Mail className="mr-1.5 h-3 w-3" />
                       Subscribe Now
                     </>
                   )}
@@ -233,7 +231,7 @@ export function BlogFooter() {
               </div>
 
               {/* Trust Indicators */}
-              <div className="text-xs text-gray-400 space-y-1">
+              <div className="text-[11px] text-gray-500 space-y-2 pt-2">
                 <div className="flex items-center gap-2">
                   <Shield className="h-3 w-3 text-green-400" />
                   <span>No spam, unsubscribe anytime</span>
@@ -248,11 +246,11 @@ export function BlogFooter() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 py-6 md:py-8">
+        <div className="border-t border-gray-700/50 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-sm text-gray-400 text-center">
+            <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 text-[11px] text-gray-500 text-center">
               <p>© {currentYear} Run Alpha. All rights reserved.</p>
-              <div className="flex items-center gap-3 md:gap-4 flex-wrap justify-center">
+              <div className="flex items-center gap-2 md:gap-3 flex-wrap justify-center">
                 <Link
                   href="https://runalpha.co/privacy-policy"
                   className="hover:text-white transition-colors"
@@ -271,21 +269,20 @@ export function BlogFooter() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+            <div className="flex items-center gap-2 text-[11px] text-gray-500">
               <span className="text-[#6CB4B8] font-medium">RC 8535781</span>
             </div>
           </div>
         </div>
 
         {/* Investment Disclaimer */}
-        <div className="border-t border-gray-700 py-5 md:py-6">
-          <p className="text-[11px] md:text-xs text-gray-500 text-center leading-relaxed max-w-4xl mx-auto">
-            <strong className="text-gray-400">Investment Disclaimer:</strong>{" "}
-            The content provided is for educational and informational purposes
-            only. It does not constitute investment advice, and should not be
-            relied upon as such. Past performance does not guarantee future
-            results. All investments carry risk of loss. Please consult with a
-            qualified financial advisor before making investment decisions.
+        <div className="border-t border-gray-700/20 py-5">
+          <p className="text-[11px] text-gray-500 text-center leading-relaxed max-w-4xl mx-auto">
+            <strong className="text-gray-400">Disclaimer:</strong>{" "}
+            Content is for educational purposes only and does not constitute
+            investment advice. Past performance does not guarantee future
+            results. Consult a qualified financial advisor before making
+            investment decisions.
           </p>
         </div>
       </div>

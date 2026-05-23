@@ -128,3 +128,52 @@
   border-bottom: 50px solid transparent;
   border-left: 100px solid white;
 }
+
+/* Hide scrollbar for horizontal scroll areas on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure images and media don't overflow on mobile */
+img, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal overflow on mobile */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Better tap targets on mobile */
+@media (max-width: 640px) {
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve text readability on small screens */
+  .prose {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .prose pre {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .prose img {
+    border-radius: 0.75rem;
+  }
+}

@@ -25,16 +25,16 @@ export function FeaturedPosts() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="group relative lg:py-24 md:py-16 py-8 px-5 md:px-16 xl:px-32 w-full grid md:grid-cols-12 gap-6 md:gap-10 items-center overflow-hidden border-b border-gray-100 last:border-0"
+          className="group relative lg:py-24 md:py-16 py-6 sm:py-8 px-4 sm:px-5 md:px-16 xl:px-32 w-full grid md:grid-cols-12 gap-5 sm:gap-6 md:gap-10 items-center overflow-hidden border-b border-gray-100 last:border-0"
         >
           {/* Text Content Area */}
           <div className="md:col-span-5 flex flex-col order-2 md:order-1 z-10">
 
-            <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-4 md:mb-6 group-hover:text-primary transition-colors">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-3 sm:mb-4 md:mb-6 group-hover:text-primary transition-colors">
               {art.title}
             </h2>
 
-            <div className="flex items-center gap-4 md:gap-6 mb-6 md:mb-8 text-slate-500 font-medium text-xs uppercase tracking-wider">
+            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 mb-4 sm:mb-6 md:mb-8 text-slate-500 font-medium text-[10px] sm:text-xs uppercase tracking-wider">
               <span className="flex items-center gap-2">
                 <Calendar size={14} className="text-primary" />
                 {new Date(art.date).toLocaleDateString("en-US", dateFormat)}
@@ -45,17 +45,17 @@ export function FeaturedPosts() {
               </span>
             </div>
 
-            <p className="text-slate-600 leading-relaxed mb-4 md:mb-8 text-base md:text-lg font-light italic">
+            <p className="text-slate-600 leading-relaxed mb-3 sm:mb-4 md:mb-8 text-sm sm:text-base md:text-lg font-light italic">
               By {art.author}
             </p>
 
-            <p className="text-slate-600 leading-relaxed mb-6 md:mb-8 line-clamp-2 md:line-clamp-3 text-sm md:text-base">
+            <p className="text-slate-600 leading-relaxed mb-4 sm:mb-6 md:mb-8 line-clamp-2 md:line-clamp-3 text-xs sm:text-sm md:text-base">
               {art.excerpt}
             </p>
 
             <Link
               href={`/blog/${art.slug}`}
-              className="w-full sm:w-fit inline-flex items-center justify-center gap-3 rounded-full px-8 py-3 bg-slate-900 hover:bg-primary text-white text-sm font-medium transition-all duration-300 group/btn shadow-xl shadow-slate-200"
+              className="w-full sm:w-fit inline-flex items-center justify-center gap-2 sm:gap-3 rounded-full px-6 sm:px-8 py-2.5 sm:py-3 bg-slate-900 hover:bg-primary text-white text-xs sm:text-sm font-medium transition-all duration-300 group/btn shadow-xl shadow-slate-200"
             >
               Read Full Article
               <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -63,7 +63,7 @@ export function FeaturedPosts() {
           </div>
 
           {/* Image Area */}
-          <div className="md:col-span-7 order-1 md:order-2 relative h-full min-h-[240px] md:min-h-[400px]">
+          <div className="md:col-span-7 order-1 md:order-2 relative h-full min-h-[200px] sm:min-h-[240px] md:min-h-[400px]">
             <motion.div
               className="relative h-full w-full overflow-hidden rounded-3xl shadow-2xl"
               whileHover={{ scale: 0.98 }}

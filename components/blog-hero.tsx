@@ -12,7 +12,7 @@ const BlogHeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] flex items-center bg-[#020617] overflow-x-clip mt-24 px-5 md:px-12 lg:px-16 pt-10 md:pt-12 pb-16 md:pb-24"
+      className="relative min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh] flex items-center bg-[#020617] overflow-x-clip mt-16 sm:mt-24 px-4 sm:px-5 md:px-12 lg:px-16 pt-8 sm:pt-10 md:pt-12 pb-12 sm:pb-16 md:pb-24"
     >
       {/* Background glow */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -21,25 +21,25 @@ const BlogHeroSection = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Left — copy */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-blue-400 mb-6">
+            <span className="inline-block text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4 sm:mb-6">
               Run Alpha Blog
             </span>
 
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-white leading-[0.9] tracking-tighter mb-6 md:mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white leading-[0.9] tracking-tighter mb-4 sm:mb-6 md:mb-8">
               Continuity, <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400">
                 Prosperity, Legacy.
               </span>
             </h1>
 
-            <p className="text-base md:text-lg text-slate-400 mb-8 md:mb-10 max-w-xl leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-slate-400 mb-6 sm:mb-8 md:mb-10 max-w-xl leading-relaxed">
               Architects of wealth preservation. We provide the
               <span className="text-white font-medium"> analytical edge </span>
               to navigate global volatility and secure your family&apos;s future

@@ -46,7 +46,7 @@ export function BlogHeader() {
         }}
         className="fixed top-0 z-[100] w-full border-b backdrop-blur-xl"
       >
-        <div className="container mx-auto px-6 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Brand */}
           <Link href="/" className="flex items-center gap-3">
             <Image
@@ -102,7 +102,7 @@ export function BlogHeader() {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-[90] md:hidden bg-white"
           >
-            <div className="pt-32 px-8 flex flex-col h-full">
+            <div className="pt-24 sm:pt-32 px-5 sm:px-8 flex flex-col h-full">
               <div className="space-y-6">
                 {navItems.map((item, i) => (
                   <motion.div
@@ -114,7 +114,7 @@ export function BlogHeader() {
                     <Link
                       href={item.href}
                       onClick={() => setMobileNav(false)}
-                      className="text-4xl font-black tracking-tight text-slate-900 flex items-center justify-between group"
+                      className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 flex items-center justify-between group"
                     >
                       {item.label}
                       <ChevronRight
