@@ -183,17 +183,12 @@ const AllArticlesPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3 sm:mb-4">
-              RunAlpha Blog
-            </span>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-3 sm:mb-4 md:mb-6">
-              Insights on Family Office and{" "}
-              <span className="text-primary italic">Private Wealth Management</span>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-3 sm:mb-4 md:mb-6">
+              Insights & <span className="text-primary italic">Strategy</span>
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
-              Expert perspectives on wealth preservation, succession planning,
-              family office strategy, and the structures that sustain prosperity
-              across generations.
+              Deep dives into market dynamics, wealth preservation, and the
+              future of global investment.
             </p>
           </motion.div>
         </div>
