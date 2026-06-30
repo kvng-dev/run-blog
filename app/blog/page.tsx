@@ -75,18 +75,125 @@ const AllArticlesPage = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,#01386e,transparent)]" />
         </div>
 
+        {/* Decorative vectors */}
+        <div
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+          aria-hidden="true"
+        >
+          {/* Dot grid */}
+          <svg className="absolute inset-0 w-full h-full text-primary/[0.06]">
+            <defs>
+              <pattern
+                id="blog-dot-grid"
+                width="34"
+                height="34"
+                patternUnits="userSpaceOnUse"
+              >
+                <circle cx="1.5" cy="1.5" r="1.5" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#blog-dot-grid)" />
+          </svg>
+
+          {/* Soft floating blobs */}
+          <motion.div
+            className="absolute -top-16 -left-10 w-64 h-64 rounded-full bg-primary/5 blur-3xl"
+            animate={{ y: [0, 24, 0], x: [0, 16, 0] }}
+            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute -top-10 right-0 w-72 h-72 rounded-full bg-primary/[0.07] blur-3xl"
+            animate={{ y: [0, -20, 0], x: [0, -18, 0] }}
+            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          />
+
+          {/* Concentric rings — left */}
+          <svg
+            className="absolute -left-20 top-1/4 w-64 h-64 text-primary/10"
+            viewBox="0 0 200 200"
+            fill="none"
+          >
+            <circle cx="100" cy="100" r="38" stroke="currentColor" strokeWidth="1" />
+            <circle cx="100" cy="100" r="66" stroke="currentColor" strokeWidth="1" />
+            <circle cx="100" cy="100" r="94" stroke="currentColor" strokeWidth="1" />
+          </svg>
+
+          {/* Concentric rings — right */}
+          <svg
+            className="absolute -right-24 bottom-0 w-72 h-72 text-primary/[0.08]"
+            viewBox="0 0 200 200"
+            fill="none"
+          >
+            <circle cx="100" cy="100" r="50" stroke="currentColor" strokeWidth="1" />
+            <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="1" />
+          </svg>
+
+          {/* Upward "market" trend line */}
+          <svg
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-32 sm:h-40"
+            viewBox="0 0 800 160"
+            fill="none"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <linearGradient id="blog-trend-fill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#01386e" stopOpacity="0.12" />
+                <stop offset="100%" stopColor="#01386e" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <motion.path
+              d="M0 150 C 120 150, 160 110, 260 110 C 360 110, 400 60, 520 60 C 620 60, 660 30, 800 18"
+              stroke="#01386e"
+              strokeOpacity="0.25"
+              strokeWidth="2"
+              strokeLinecap="round"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ duration: 1.8, ease: "easeInOut", delay: 0.3 }}
+            />
+            <motion.path
+              d="M0 150 C 120 150, 160 110, 260 110 C 360 110, 400 60, 520 60 C 620 60, 660 30, 800 18 L 800 160 L 0 160 Z"
+              fill="url(#blog-trend-fill)"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut", delay: 1.2 }}
+            />
+          </svg>
+
+          {/* Accent plus marks */}
+          <svg
+            className="absolute top-16 right-1/4 w-5 h-5 text-primary/25"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path d="M12 4v16M4 12h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+          <svg
+            className="absolute bottom-20 left-1/4 w-4 h-4 text-primary/20"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path d="M12 4v16M4 12h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </div>
+
         <div className="max-w-4xl mx-auto text-center relative z-10 mt-12 sm:mt-16 md:mt-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-3 sm:mb-4 md:mb-6">
-              Insights & <span className="text-primary italic">Strategy</span>
+            <span className="inline-block text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-3 sm:mb-4">
+              RunAlpha Blog
+            </span>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-3 sm:mb-4 md:mb-6">
+              Insights on Family Office and{" "}
+              <span className="text-primary italic">Private Wealth Management</span>
             </h1>
             <p className="text-sm sm:text-base md:text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto font-light">
-              Deep dives into market dynamics, wealth preservation, and the
-              future of global investment.
+              Expert perspectives on wealth preservation, succession planning,
+              family office strategy, and the structures that sustain prosperity
+              across generations.
             </p>
           </motion.div>
         </div>
