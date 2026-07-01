@@ -29,20 +29,19 @@ const BlogHeroSection = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <span className="inline-block text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4 sm:mb-6">
-              Run Alpha Blog
+              RunAlpha Blog
             </span>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white leading-[0.9] tracking-tighter mb-4 sm:mb-6 md:mb-8">
-              Continuity, <br />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.05] tracking-tight mb-4 sm:mb-6 md:mb-8">
+              Insights on Family Office and <br className="hidden sm:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400">
-                Prosperity, Legacy.
+                Private Wealth Management
               </span>
             </h1>
 
             <p className="text-sm sm:text-base md:text-lg text-slate-400 mb-6 sm:mb-8 md:mb-10 max-w-xl leading-relaxed">
-              Architects of wealth preservation. We provide the
-              <span className="text-white font-medium"> analytical edge </span>
-              to navigate global volatility and secure your family&apos;s future
+              Expert perspectives on wealth preservation, succession planning,
+              family office strategy, and the structures that sustain prosperity
               across generations.
             </p>
 
